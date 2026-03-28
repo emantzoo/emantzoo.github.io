@@ -405,6 +405,60 @@
                 </details>
             </div>
 
+            <!-- Project: PD Gait Analysis Agent -->
+            <div class="project" data-tags="ai python science">
+                <div class="project-header">
+                    <h3>PD Gait Analysis Agent &mdash; LLM-Powered Clinical Reasoning</h3>
+                    <div class="tags">
+                        <span class="tag tag-python">Python</span>
+                        <span class="tag tag-ai">AI/Gemini</span>
+                        <span class="tag tag-cloud">RAG/MongoDB</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    An LLM-powered ReAct agent that answers natural-language questions about Parkinson&rsquo;s Disease gait data
+                    from wearable sensors. A clinician types a question and the system writes Python code to analyse the data,
+                    executes it in a sandbox, interprets results against clinical knowledge, and produces a clinically contextualised
+                    narrative answer. Architecture follows Google&rsquo;s PHIA pattern (Nature Communications, Jan 2026) &mdash;
+                    the first application of this approach to PD gait monitoring data.
+                </p>
+                <ul class="highlights">
+                    <li>ReAct agent loop: Thought &rarr; Action (code execution or RAG retrieval) &rarr; Observation &rarr; repeat until final answer; 1&ndash;3 iterations per question</li>
+                    <li>Two tools: sandboxed Python execution (pandas on gait DataFrame) and MongoDB Atlas vector search over 17 clinical knowledge chunks</li>
+                    <li>Clinical knowledge base: MDS-UPDRS scoring, H&amp;Y staging, gait thresholds (Hausdorff, Bloem), levodopa pharmacokinetics, freezing-of-gait management</li>
+                    <li>Synthetic dataset: 3 patients (moderate PD, mild PD, healthy control), 19,183 steps over 3 weeks with medication states and freezing episodes</li>
+                    <li>Full reasoning trace: every thought, code block, observation, and RAG retrieval visible in expandable UI</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; Gemini 2.5 Flash &middot; MongoDB Atlas &middot; sentence-transformers &middot; Pandas &middot; NumPy</p>
+                <a class="demo-link" href="https://github.com/emantzoo/pd-gait-agent">GitHub</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>LLM</td><td>Gemini 2.5 Flash (Google AI Studio, free tier)</td></tr>
+                            <tr><td>Agent framework</td><td>Custom ReAct loop (no LangChain dependency) &mdash; prompt parsing, tool dispatch, iteration control</td></tr>
+                            <tr><td>Code execution</td><td>Sandboxed Python with pre-loaded pandas DataFrame and patient profile dict</td></tr>
+                            <tr><td>RAG</td><td>MongoDB Atlas vector search, all-MiniLM-L6-v2 embeddings (sentence-transformers, runs locally), 17 clinical chunks</td></tr>
+                            <tr><td>System prompt</td><td>~35k chars assembled from role description, clinical knowledge, data schema, patient profile, 6 few-shot ReAct trajectories, tool descriptions</td></tr>
+                            <tr><td>Data</td><td>Synthetic gait data: step_length, stride_time, cadence, stride_variability, asymmetry_index, freezing_flag, medication_state, hours_since_dose</td></tr>
+                            <tr><td>Frontend</td><td>Streamlit with patient selector, context cards, example question buttons, expandable reasoning trace</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>PHIA-inspired ReAct pattern</strong> &mdash; agent reasons, acts (code or RAG), observes, and iterates; produces verifiable computation rather than hallucinated statistics</li>
+                            <li><strong>Custom agent loop over LangChain</strong> &mdash; full control over prompt assembly, tool dispatch, and iteration limits without framework overhead</li>
+                            <li><strong>Embedded clinical knowledge in system prompt + RAG</strong> &mdash; critical thresholds and scoring criteria are always available; RAG supplements with deeper guideline details on demand</li>
+                            <li><strong>Synthetic data with clinical realism</strong> &mdash; medication wearing-off patterns, progressive deterioration, freezing episodes, and PD subtype signatures allow meaningful agent evaluation without real patient data</li>
+                            <li><strong>Zero-cost stack</strong> &mdash; Gemini free tier, MongoDB Atlas M0, local embeddings; total running cost $0</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
             <!-- Project 3: DMA Dashboard -->
             <div class="project" data-tags="business r ai cloud">
                 <div class="project-header">
