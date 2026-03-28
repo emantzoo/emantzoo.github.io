@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eirini Mantzouni | Data Analyst &middot; Statistical Researcher &middot; PhD</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-purple: #bc8cff;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --accent-teal: #39d2c0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 56px; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        .hero { padding: 80px 0 60px; text-align: center; border-bottom: 1px solid var(--border); }
+        .hero h1 { font-size: 2.4em; color: #fff; margin-bottom: 8px; }
+        .hero .subtitle { font-size: 1.15em; color: var(--accent); margin-bottom: 20px; }
+        .hero .bio { max-width: 750px; margin: 0 auto 24px; color: var(--text-muted); font-size: 0.95em; }
+        .hero .links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .hero .links a { background: var(--surface); border: 1px solid var(--border); padding: 8px 20px; border-radius: 6px; font-size: 0.9em; }
+        .hero .links a:hover { border-color: var(--accent); text-decoration: none; }
+
+        .section { padding: 60px 0; }
+        .section-title { font-size: 1.6em; color: #fff; margin-bottom: 32px; padding-bottom: 12px; border-bottom: 2px solid var(--border); }
+
+        .projects { display: grid; grid-template-columns: 1fr; gap: 28px; }
+        .project { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; transition: border-color 0.2s; }
+        .project:hover { border-color: var(--accent); }
+        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 12px; }
+        .project h3 { font-size: 1.25em; color: #fff; }
+        .project .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .project .tag { font-size: 0.72em; padding: 3px 10px; border-radius: 20px; border: 1px solid; font-weight: 500; }
+        .tag-python { color: var(--accent); border-color: var(--accent); }
+        .tag-r { color: var(--accent-green); border-color: var(--accent-green); }
+        .tag-powerbi { color: var(--accent-orange); border-color: var(--accent-orange); }
+        .tag-django { color: var(--accent-purple); border-color: var(--accent-purple); }
+        .tag-shiny { color: var(--accent-teal); border-color: var(--accent-teal); }
+        .tag-cloud { color: var(--accent-red); border-color: var(--accent-red); }
+        .tag-ai { color: var(--accent-orange); border-color: var(--accent-orange); }
+        .tag-minecraft { color: #4ade80; border-color: #4ade80; }
+        .project .desc { color: var(--text-muted); font-size: 0.92em; margin-bottom: 16px; }
+        .project .highlights { list-style: none; margin-bottom: 16px; }
+        .project .highlights li { padding: 3px 0; font-size: 0.88em; color: var(--text); }
+        .project .highlights li::before { content: "->"; color: var(--accent); margin-right: 8px; font-family: monospace; }
+        .project .stack { font-size: 0.82em; color: var(--text-muted); }
+        .project .stack strong { color: var(--text); }
+        .project .demo-link { display: inline-block; margin-top: 12px; margin-right: 8px; background: rgba(88,166,255,0.1); border: 1px solid var(--accent); padding: 6px 16px; border-radius: 6px; font-size: 0.85em; }
+
+        /* Read More details/summary */
+        .project details { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 12px; }
+        .project details summary { cursor: pointer; color: var(--accent); font-size: 0.9em; font-weight: 500; padding: 4px 0; user-select: none; }
+        .project details summary:hover { text-decoration: underline; }
+        .project details[open] summary { margin-bottom: 12px; }
+        .project details .detail-section { margin-bottom: 16px; }
+        .project details h4 { color: #fff; font-size: 0.95em; margin-bottom: 8px; }
+        .project details table { width: 100%; border-collapse: collapse; font-size: 0.82em; margin-bottom: 12px; }
+        .project details th { text-align: left; padding: 6px 10px; background: rgba(88,166,255,0.08); color: var(--accent); border-bottom: 1px solid var(--border); }
+        .project details td { padding: 5px 10px; border-bottom: 1px solid rgba(48,54,61,0.5); color: var(--text-muted); }
+        .project details td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
+        .project details .arch-list { list-style: none; }
+        .project details .arch-list li { padding: 6px 0; font-size: 0.85em; color: var(--text-muted); border-bottom: 1px solid rgba(48,54,61,0.3); }
+        .project details .arch-list li strong { color: var(--text); }
+        .project details .value-text { font-size: 0.88em; color: var(--text-muted); font-style: italic; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+        .skill-group h4 { color: var(--accent); font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .skill-group p { font-size: 0.88em; color: var(--text-muted); }
+
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.85em; }
+
+        /* Navigation Bar */
+        .nav { position: sticky; top: 0; z-index: 100; background: rgba(13,17,23,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 12px 0; }
+        .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .nav a { color: var(--text-muted); font-size: 0.88em; padding: 6px 16px; border-radius: 6px; transition: all 0.2s; }
+        .nav a:hover { color: var(--accent); background: rgba(88,166,255,0.08); text-decoration: none; }
+
+        /* Filter Pills */
+        .filter-pills { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+        .filter-pill {
+            background: transparent; border: 1px solid var(--border); color: var(--text-muted);
+            padding: 6px 18px; border-radius: 20px; font-size: 0.84em; cursor: pointer;
+            transition: all 0.2s; font-family: inherit; font-weight: 500;
+        }
+        .filter-pill:hover { border-color: var(--accent); color: var(--text); }
+        .filter-pill .count { font-size: 0.8em; opacity: 0.7; margin-left: 4px; }
+        .filter-pill.active { font-weight: 600; }
+        .filter-pill[data-filter="all"].active { background: rgba(88,166,255,0.15); border-color: var(--accent); color: var(--accent); }
+        .filter-pill[data-filter="stats-ml"].active { background: rgba(63,185,80,0.15); border-color: var(--accent-green); color: var(--accent-green); }
+        .filter-pill[data-filter="policy"].active { background: rgba(188,140,255,0.15); border-color: var(--accent-purple); color: var(--accent-purple); }
+        .filter-pill[data-filter="business"].active { background: rgba(210,153,34,0.15); border-color: var(--accent-orange); color: var(--accent-orange); }
+        .filter-pill[data-filter="science"].active { background: rgba(57,210,192,0.15); border-color: var(--accent-teal); color: var(--accent-teal); }
+        .filter-pill[data-filter="educational"].active { background: rgba(74,222,128,0.15); border-color: #4ade80; color: #4ade80; }
+        .filter-pill[data-filter="r"].active { background: rgba(63,185,80,0.15); border-color: var(--accent-green); color: var(--accent-green); }
+        .filter-pill[data-filter="python"].active { background: rgba(88,166,255,0.15); border-color: var(--accent); color: var(--accent); }
+        .filter-pill[data-filter="ai"].active { background: rgba(210,153,34,0.15); border-color: var(--accent-orange); color: var(--accent-orange); }
+        .filter-pill[data-filter="cloud"].active { background: rgba(248,81,73,0.15); border-color: var(--accent-red); color: var(--accent-red); }
+        .filter-pill[data-filter="powerbi"].active { background: rgba(210,153,34,0.15); border-color: var(--accent-orange); color: var(--accent-orange); }
+
+        .project { transition: border-color 0.2s, opacity 0.3s, transform 0.3s; }
+        .project.hidden { display: none; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8em; }
+            .project { padding: 20px; }
+            .project details td:first-child { white-space: normal; }
+            .filter-pills { gap: 6px; }
+            .filter-pill { padding: 5px 12px; font-size: 0.78em; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills & Tools</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#education">Education</a>
+    </div>
+</nav>
+
+<div class="container">
+    <section class="hero">
+        <h1>Eirini Mantzouni</h1>
+        <div class="subtitle">Data Analyst &middot; Statistical Researcher &middot; Fisheries Dynamics Biologist &middot; PhD</div>
+        <p class="bio">
+            Data Analyst with 8+ years of experience in statistical modeling, ETL pipelines, and business intelligence.
+            Expert in Python, R, SQL, Power BI, and cloud deployment with a track record of delivering data-driven solutions
+            for EU institutions, government agencies, and research projects. I build full-stack data applications &mdash;
+            from automated anonymization engines to policy analytics platforms and AI-powered dashboards.
+        </p>
+        <p class="bio" style="margin-top: 8px;">
+            PhD in Quantitative Ecology &amp; Statistical Modeling (University of Copenhagen, Marie Curie Fellowship).
+            External Expert for the EU Scientific, Technical and Economic Committee for Fisheries (STECF) since 2017,
+            contributing to stock assessments, regulatory impact analyses, and fisheries data infrastructure across 10+ Expert Working Groups.
+            Currently contributing to European Commission projects (DG EMPL) involving AI-powered analytics and digital transformation.
+        </p>
+        <div class="links">
+            <a href="cv.html">CV</a>
+            <a href="https://www.linkedin.com/in/irene-mantzouni-0b47b8283/">LinkedIn</a>
+            <a href="https://github.com/emantzoo">GitHub</a>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="filter-pills">
+            <button class="filter-pill active" data-filter="all">All<span class="count">(11)</span></button>
+        </div>
+        <div class="filter-pills" style="margin-top: -16px;">
+            <span style="color: var(--text-muted); font-size: 0.78em; padding: 6px 0; opacity: 0.6;">Scope</span>
+            <button class="filter-pill" data-filter="stats-ml">Statistics &amp; ML<span class="count">(4)</span></button>
+            <button class="filter-pill" data-filter="policy">Policy Analytics<span class="count">(2)</span></button>
+            <button class="filter-pill" data-filter="business">Business Intelligence<span class="count">(3)</span></button>
+            <button class="filter-pill" data-filter="science">Scientific Apps<span class="count">(3)</span></button>
+            <button class="filter-pill" data-filter="educational">Educational<span class="count">(1)</span></button>
+        </div>
+        <div class="filter-pills" style="margin-top: -16px;">
+            <span style="color: var(--text-muted); font-size: 0.78em; padding: 6px 0; opacity: 0.6;">Stack</span>
+            <button class="filter-pill" data-filter="r">R / Shiny<span class="count">(7)</span></button>
+            <button class="filter-pill" data-filter="python">Python<span class="count">(4)</span></button>
+            <button class="filter-pill" data-filter="ai">AI / LLM<span class="count">(3)</span></button>
+            <button class="filter-pill" data-filter="cloud">Cloud<span class="count">(4)</span></button>
+            <button class="filter-pill" data-filter="powerbi">Power BI<span class="count">(1)</span></button>
+        </div>
+        <div class="projects">
+
+            <!-- Project: EU FDI Explorer -->
+            <div class="project" data-tags="policy r stats-ml">
+                <div class="project-header">
+                    <h3>EU FDI Explorer &mdash; Interactive Fisheries Analysis</h3>
+                    <div class="tags">
+                        <span class="tag tag-r">R</span>
+                        <span class="tag tag-r">R Markdown</span>
+                        <span class="tag tag-ai">ML/Clustering</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    An interactive R Markdown analysis of 12 years of EU Fisheries Dependent Information (STECF FDI, 2013&ndash;2024)
+                    across all European sea basins. Combines descriptive analytics, Landing Obligation policy evaluation, and unsupervised
+                    machine learning for fleet behavioural shift detection &mdash; built as a single self-contained HTML report with
+                    drill-down charts, linked filters, and cross-plot interactivity.
+                </p>
+                <ul class="highlights">
+                    <li>~5M catch records, 23 EU Member States, 12 years &mdash; effort trends, discard analysis, species composition</li>
+                    <li>Landing Obligation before/after analysis with STECF EWG 25-10 exemptions (de minimis &amp; survivability)</li>
+                    <li>PCA + k-means clustering on m&eacute;tier compositions to detect fleet adaptation to regulation</li>
+                    <li>5 linked dashboards (crosstalk SharedData), Sankey diagrams, sunbursts, drill-down charts, searchable tables</li>
+                    <li>Fully self-contained HTML &mdash; no server needed, all interactivity runs in the browser</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> R &middot; R Markdown &middot; Plotly &middot; Highcharter &middot; Crosstalk &middot; Reactable &middot; echarts4r &middot; ggiraph &middot; cluster &middot; vegan</p>
+                <a class="demo-link" href="https://emantzoo.github.io/stecf-fdi-analysis/fdi_explorer.html">Live Report</a>
+                <a class="demo-link" href="https://github.com/emantzoo/stecf-fdi-analysis">GitHub</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Data pipeline</td><td>data.table + dplyr: raw CSVs &rarr; aggregated .rds files via prepare_data.R</td></tr>
+                            <tr><td>Visualisation</td><td>Plotly (stacked areas, Sankey, sunburst, treemap), Highcharter (drill-down), ggiraph (hover heatmaps), echarts4r (animated races)</td></tr>
+                            <tr><td>Interactivity</td><td>5 crosstalk-linked dashboards: SharedData groups linking plotly charts + reactable/DT tables via filter_select/filter_slider</td></tr>
+                            <tr><td>Discard analysis</td><td>Species-level discard ratios, LO coverage flags, before/after comparison, exemption treemap hierarchy</td></tr>
+                            <tr><td>ML pipeline</td><td>Hellinger transform &rarr; PCA (compositional) &rarr; silhouette-based optimal k &rarr; k-means &rarr; Sankey transitions</td></tr>
+                            <tr><td>Data source</td><td>STECF FDI 2025 data call (EWG 25-10) + Annex 3 exemptions Excel (multi-sheet, merged-cell headers)</td></tr>
+                            <tr><td>Output</td><td>Self-contained HTML (12 MB), all JS/CSS/data embedded, code-folded, floating TOC</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Key Findings</h4>
+                        <ul class="arch-list">
+                            <li><strong>Effort declining</strong> &mdash; fishing effort fell across most EU sea basins, with a marked Mediterranean drop post-2019 (West Med MAP trawler effort limits)</li>
+                            <li><strong>Discards persist under LO</strong> &mdash; ~4.6% EU-wide discard rate; bottom trawls (OTB) dominate. De minimis and survivability exemptions cover substantial catch shares</li>
+                            <li><strong>Fleet profiles stable</strong> &mdash; PCA + clustering shows most Mediterranean countries maintained their gear mix over 12 years; shifts are gradual</li>
+                            <li><strong>43% data confidential</strong> &mdash; confidential values disproportionately affect smaller countries and niche fisheries, limiting analytical granularity</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project 1: SDC -->
+            <div class="project" data-tags="stats-ml python ai">
+                <div class="project-header">
+                    <h3>Statistical Disclosure Control &mdash; Streamlit App</h3>
+                    <div class="tags">
+                        <span class="tag tag-python">Python</span>
+                        <span class="tag tag-ai">AI/LLM</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    A statistical disclosure control application that protects individual-level datasets against re-identification attacks
+                    using automated anonymization. Implements a multi-layered protection framework: backward elimination risk analysis,
+                    a 40+ rule decision engine for method selection, and an adaptive retry loop with escalation and cross-method fallbacks.
+                </p>
+                <ul class="highlights">
+                    <li>4 protection methods (k-Anonymity, Local Suppression, PRAM, Noise Addition) with auto-selection from 40+ rules</li>
+                    <li>Backward elimination risk analysis drives QI classification, preprocessing, per-QI parameters</li>
+                    <li>Composite utility score: Pearson correlation, KL divergence, optional ML validation</li>
+                    <li>Optional AI column classification via Cerebras Qwen 235B, R/sdcMicro integration</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; Pandas &middot; Plotly &middot; scikit-learn &middot; R/sdcMicro &middot; Cerebras API</p>
+                <a class="demo-link" href="https://sdcmethods.streamlit.app/">Live Demo</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>Streamlit, custom CSS, session state management</td></tr>
+                            <tr><td>Visualisation</td><td>Plotly (risk histograms, variable importance bars, before/after overlays)</td></tr>
+                            <tr><td>Risk engine</td><td>Custom pipeline: per-record ReID, backward elimination, structural risk, variable importance ranking</td></tr>
+                            <tr><td>Protection engine</td><td>4 methods, 40+ selection rules, dynamic pipeline builder, multi-phase retry with escalation + fallbacks</td></tr>
+                            <tr><td>Method selection</td><td>Rules engine (RC, CAT, LDIV, DATE, QR, LOW, DP, HR rule families), suppression-gated kANON</td></tr>
+                            <tr><td>Preprocessing</td><td>Type-aware routing (6 priority tiers), adaptive tier loop (light to very aggressive), risk-weighted per-QI cardinality limits</td></tr>
+                            <tr><td>Privacy metrics</td><td>k-anonymity, l-diversity (distinct + entropy), t-closeness (EMD/TVD), uniqueness rate, disclosure risk</td></tr>
+                            <tr><td>AI integration</td><td>Cerebras Qwen 235B for column classification and method recommendation (optional)</td></tr>
+                            <tr><td>R integration</td><td>sdcMicro for optimal local suppression and correlated noise (optional, Python fallback)</td></tr>
+                            <tr><td>Testing</td><td>pytest (unit + integration), 17-dataset test suite covering real-world Greek administrative data</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Backward elimination as the foundation</strong> &mdash; per-variable risk contribution drives everything downstream: QI classification confidence, preprocessing aggressiveness, per-QI protection parameters, LOCSUPR importance weights, and GENERALIZE ordering</li>
+                            <li><strong>Suppression-gated method selection</strong> &mdash; before selecting kANON at any k value, the engine pre-estimates suppression rate from equivalence class sizes. If estimated suppression exceeds 25%, it switches to LOCSUPR or PRAM directly</li>
+                            <li><strong>Type-aware preprocessing before generic generalization</strong> &mdash; dates, ages, geography, and skewed numerics each get domain-specific transformations before the generic cardinality-reduction loop runs, preserving domain structure</li>
+                            <li><strong>Sensitive-column-scoped utility</strong> &mdash; utility is measured primarily on sensitive (analysis) columns, not QIs. The composite score reflects what downstream analysts actually care about</li>
+                            <li><strong>Proportional low-cardinality QI guard</strong> &mdash; columns with very few unique values relative to dataset size are demoted from QI status via a two-tier ratio test, preventing structural methods from suppressing 90%+ of their values</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project 2: IAP -->
+            <div class="project" data-tags="science r cloud">
+                <div class="project-header">
+                    <h3>IAP Citrus &mdash; Integrated Assessment of Pesticide Impact</h3>
+                    <div class="tags">
+                        <span class="tag tag-r">R/Shiny</span>
+                        <span class="tag tag-cloud">Cloud</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    Production web application for the PLANT-B research project (PRIMA grant, Benaki Phytopathological Institute).
+                    Helps agronomists across 4 countries record pesticide usage and quantify environmental footprint in real time
+                    using the IAP scoring methodology across biodiversity, ecotoxicology, pollution, and human health compartments.
+                </p>
+                <ul class="highlights">
+                    <li>Real-time scoring: data entry triggers full IAP pipeline, returns colour-coded impact scores in seconds</li>
+                    <li>SQLite database with 15+ tables, 9,000+ reference records</li>
+                    <li>15 Shiny modules with reactive state management, adapter pattern for scientific R functions</li>
+                    <li>Dockerized on Google Cloud Run, used across 4 Mediterranean countries</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; plotly &middot; ggplot2 &middot; SQLite &middot; Docker &middot; Google Cloud Run</p>
+                <a class="demo-link" href="https://iap-app-176552537835.europe-west1.run.app/">Live Demo</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>R/Shiny, bslib (Bootstrap 5), dark mode, CSS custom properties</td></tr>
+                            <tr><td>Visualisation</td><td>plotly, ggplot2, reactable (React-based tables), DT</td></tr>
+                            <tr><td>Database</td><td>SQLite (WAL mode) &mdash; 15+ tables, 9,000+ reference records (PPP products, active substances, ecotox thresholds)</td></tr>
+                            <tr><td>Architecture</td><td>15 Shiny modules with reactive state management, shared scoring engine adapter pattern</td></tr>
+                            <tr><td>Scoring engine</td><td>Custom R pipeline: IAP_PREP, triplet decomposition, weighted rank scoring, compartment aggregation with Scoring Impact Factors</td></tr>
+                            <tr><td>Auth</td><td>shinymanager with encrypted credentials (disabled for public demo)</td></tr>
+                            <tr><td>Deployment</td><td>Docker (rocker/shiny base), Google Cloud Run (europe-west1), Artifact Registry</td></tr>
+                            <tr><td>Testing</td><td>testthat, testServer, shinytest2 (unit + integration + E2E)</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Adapter pattern for the scoring engine</strong> &mdash; the original scientific R functions are wrapped, not rewritten, preserving scientific integrity while enabling a modern web interface</li>
+                            <li><strong>Wide-format storage</strong> &mdash; column names are parameter IDs, allowing the scoring engine to consume data directly without transformation</li>
+                            <li><strong>Score caching with MD5 hash invalidation</strong> &mdash; scores are recomputed only when underlying data changes, keeping the UI responsive</li>
+                            <li><strong>Modular Shiny design</strong> &mdash; each feature is an independent module with its own UI/server pair, enabling parallel development and isolated testing</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <p class="value-text">Replaced a manual workflow of Excel spreadsheets and offline R scripts with a unified web application that reduced the time from data entry to environmental impact assessment from hours to seconds.</p>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project: DataScope -->
+            <div class="project" data-tags="stats-ml r">
+                <div class="project-header">
+                    <h3>DataScope &mdash; Interactive Data Analysis Platform</h3>
+                    <div class="tags">
+                        <span class="tag tag-r">R/Shiny</span>
+                        <span class="tag tag-shiny">bslib</span>
+                        <span class="tag tag-ai">ML/Caret</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    A generic, portfolio-ready Shiny application for end-to-end data analysis. Upload any CSV/Excel dataset
+                    and explore it through descriptive statistics, statistical tests, machine learning modeling, model
+                    interpretability (DALEX, LIME, SHAP), interactive visualizations, network analysis, and automated report generation
+                    &mdash; all in a single modular application with 12+ modules and a comprehensive test suite.
+                </p>
+                <ul class="highlights">
+                    <li>7 ML algorithms (lm, RF, SVM, XGBoost, kNN, nnet) with auto-scaling, cross-validation, and one-click training</li>
+                    <li>Full model interpretability: variable importance, PDP, LIME, Break Down, interaction plots, Johnson-Neyman, diagnostics</li>
+                    <li>Statistical tests: t-test, ANOVA, chi-square, correlation &mdash; with effect sizes and assumption checks</li>
+                    <li>Interactive visualizations via ggplot2, plotly, and esquisse; network analysis with igraph and networkD3</li>
+                    <li>Reactable tables with color-coded metrics, pivot tables, and downloadable PDF/HTML reports</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; caret &middot; DALEX &middot; lime &middot; ingredients &middot; plotly &middot; ggplot2 &middot; reactable &middot; igraph &middot; networkD3 &middot; testthat</p>
+                <a class="demo-link" href="https://github.com/emantzoo/DataScope">GitHub</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>bslib (Bootstrap 5, Flatly theme), dark header, responsive sidebar layouts, shinycssloaders</td></tr>
+                            <tr><td>Data overview</td><td>Reactable tables with type icons, color-coded missing %, skimr/dlookr diagnostics, SmartEDA profiles</td></tr>
+                            <tr><td>ML pipeline</td><td>caret::train with 7 methods, auto preProcess (center+scale for SVM/kNN/nnet), CV folds, train/test split</td></tr>
+                            <tr><td>Interpretability</td><td>DALEX explainer &rarr; variable importance, PDP (ingredients), LIME (lime), Break Down (iBreakDown), interactions (interactions pkg)</td></tr>
+                            <tr><td>Diagnostics</td><td>performance::check_model, parameters::model_parameters, broom::tidy, report::report &mdash; with reactable summary tables</td></tr>
+                            <tr><td>Statistical tests</td><td>rstatix + infer: t-test, Wilcoxon, ANOVA, Kruskal-Wallis, chi-square, Pearson/Spearman correlation</td></tr>
+                            <tr><td>Visualisation</td><td>ggplot2, plotly (scatter, histogram, boxplot), esquisse (drag-and-drop), ggpubr (publication-quality)</td></tr>
+                            <tr><td>Network analysis</td><td>igraph (correlation &amp; co-occurrence networks), networkD3 (interactive force-directed), ggraph layouts</td></tr>
+                            <tr><td>Reporting</td><td>R Markdown PDF/HTML generation with saved plots &amp; ML results</td></tr>
+                            <tr><td>Testing</td><td>testthat + testServer: unit tests, module tests, E2E ML+interpretability tests across multiple datasets</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Modular Shiny design</strong> &mdash; 12+ independent modules (data upload, overview, stats, ML, interpretability, viz, network, pivot, predictions, report), each with isolated UI/server pairs</li>
+                            <li><strong>Shared reactive state</strong> &mdash; a single reactiveValues object flows between modules: trained model, predictions, test data, and target variable are shared across ML, interpretability, and predictions modules</li>
+                            <li><strong>Auto-scaling for sensitive models</strong> &mdash; SVM, kNN, and nnet automatically get center+scale preprocessing via caret&rsquo;s preProcess, preventing convergence issues without user intervention</li>
+                            <li><strong>DALEX as the interpretability backbone</strong> &mdash; a single DALEX explainer object powers variable importance, PDP, Break Down, and model performance &mdash; consistent API regardless of the underlying model type</li>
+                            <li><strong>Defensive prediction handling</strong> &mdash; NA-safe metric computation filters to complete cases before calculating RMSE/MAE/R&sup2;, with explicit reporting of dropped observations</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project 3: DMA Dashboard -->
+            <div class="project" data-tags="business r ai cloud">
+                <div class="project-header">
+                    <h3>Digital Maturity Assessment &mdash; Shiny Dashboard</h3>
+                    <div class="tags">
+                        <span class="tag tag-r">R/Shiny</span>
+                        <span class="tag tag-ai">AI/LLM</span>
+                        <span class="tag tag-cloud">Cloud</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    Interactive dashboard assessing digital maturity of Greek businesses. Takes raw survey data (Likert scales, checklists,
+                    ratings across 11 question blocks) and produces full diagnostic reports: SWOT classification, priority matrices,
+                    gap analysis, implementation roadmaps, risk exposure, and bottleneck identification.
+                </p>
+                <ul class="highlights">
+                    <li>Three data-entry methods: Greek questionnaire, Excel template, AI conversational assessment</li>
+                    <li>15 reactive computations: SWOT, priority, gap, roadmap, heatmap, bottleneck analysis</li>
+                    <li>Three recommendation engines: rule-based, dynamic dimension-level, priority-based</li>
+                    <li>Six interactive charts with click-to-drill-down modal dialogs</li>
+                    <li>AI narratives per tab via Cerebras LLM with tab-specific prompt builders</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; ggplot2 &middot; plotly &middot; ggiraph &middot; DT &middot; Cerebras API &middot; Docker</p>
+                <a class="demo-link" href="https://dma-dashboard-176552537835.europe-west1.run.app/">Live Demo</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>Shiny + bslib (Bootstrap 5, Flatly theme), custom CSS, shinycssloaders, 12 modular UI components</td></tr>
+                            <tr><td>Visualisation</td><td>ggplot2, plotly (click events + tooltips), ggiraph (interactive lollipop), DT, reactable</td></tr>
+                            <tr><td>Analysis engine</td><td>15 reactive computations: attribute join, SWOT, dimension, maturity, priority, gap, roadmap, heatmap, bottleneck, risk, funnel, dependency, comparison. bindCache on heavy computations</td></tr>
+                            <tr><td>Recommendations</td><td>Rule-based (business_rules.xlsx pattern matching), dynamic (score-category lookup), priority-based (quadrant extraction + ranking)</td></tr>
+                            <tr><td>Narrative generation</td><td>4 template-based generators (100K+ lines of rule-based text), 11 tab-specific LLM prompt builders</td></tr>
+                            <tr><td>AI assessment</td><td>Role-adaptive conversational scoring (CEO/CTO/Consultant personas), dimension-by-dimension prompts, JSON response parsing</td></tr>
+                            <tr><td>LLM integration</td><td>Cerebras API, llama3.1-8b, temperature 0.3, 120s timeout, 2 retries with 5s backoff</td></tr>
+                            <tr><td>Server architecture</td><td>Orchestrator pattern: app.R sources UI components, reactives module, outputs module, AI assessment module</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Modular UI decomposition</strong> &mdash; UI split into 12 separate files sourced at startup, keeping app.R as a pure orchestrator (~230 lines)</li>
+                            <li><strong>Reactive data store for runtime additions</strong> &mdash; reactiveVal as mutable data store; questionnaire, Excel, and AI results are bind_rows'd, making new companies immediately available across all 15+ computations</li>
+                            <li><strong>Three independent recommendation engines</strong> &mdash; rule-based catches threshold violations, dynamic matches score ranges, priority-based extracts actionable items from the quadrant matrix</li>
+                            <li><strong>Role-adaptive AI assessment</strong> &mdash; CEO responses scored generously for business items, CTO responses with technical precision, consultant responses as professional observations</li>
+                            <li><strong>Click-to-drill-down over embedded detail</strong> &mdash; click events open modal dialogs rather than embedding tables below every chart, keeping tabs scannable</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project 4: Smart DMA -->
+            <div class="project" data-tags="business r cloud">
+                <div class="project-header">
+                    <h3>Smart DMA &mdash; Adaptive Digital Maturity Assessment</h3>
+                    <div class="tags">
+                        <span class="tag tag-r">R/Shiny</span>
+                        <span class="tag tag-cloud">Cloud</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    Adaptive digital maturity assessment for retail SMEs replacing static questionnaires with a dynamic, evidence-based
+                    diagnostic engine. Guides business owners through a 7-stage flow &mdash; from business classification and symptom triage
+                    to constraint-aware solution matching &mdash; producing tailored outputs for SMEs, advisors, and analysts.
+                </p>
+                <ul class="highlights">
+                    <li>44 questions across 14 blocks, adaptively routed toward highest-scoring unconfirmed pain cluster</li>
+                    <li>7-cluster Bayesian-inspired scoring model with sector priors and symptom card boosts</li>
+                    <li>19 solutions filtered by hard constraints + composite scoring</li>
+                    <li>20-node digital twin process map with R-expression status rules</li>
+                    <li>Three output audiences: SME (action cards), Advisor (evidence tables), Analyst (SWOT/radar/roadmap)</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; ggplot2 &middot; plotly &middot; fmsb &middot; gt &middot; pagedown &middot; Docker &middot; Cloud Run</p>
+                <a class="demo-link" href="https://smart-dma-176552537835.europe-west1.run.app/">Live Demo</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>Shiny + bslib (Bootstrap 5), shinyjs auto-advance, custom CSS (choice tiles, symptom cards, progress indicators)</td></tr>
+                            <tr><td>Scoring engine</td><td>7-cluster weighted accumulation, sector priors, flag-driven conditional routing, confirmation threshold logic</td></tr>
+                            <tr><td>Adaptive routing</td><td>get_next_question: filter by condition/skip_if/maturity/sector, prioritize highest unconfirmed cluster, exit on 2 confirmed or 15 answered</td></tr>
+                            <tr><td>Solution matching</td><td>Hard filters (budget, time, support, sector, excluded_if expressions) + soft composite scoring (pain x 0.4 + budget_fit x 0.3 + time_fit x 0.3)</td></tr>
+                            <tr><td>Digital twin</td><td>ggplot2 tilemap, 20 nodes x 4 tiers, R-expression status rules, integration gap pair detection</td></tr>
+                            <tr><td>Visualization</td><td>ggplot2 + plotly (process map, SWOT bars, gap bars, priority matrix, roadmap tiles), fmsb (radar), ggrepel</td></tr>
+                            <tr><td>Reporting</td><td>pagedown::chrome_print for PDF, officedown for Word, flextable for formatted tables</td></tr>
+                            <tr><td>Data model</td><td>373-column question CSV (13 base + 180 option weights + 180 flags), 19 solutions, 20 process nodes &mdash; all logic in CSVs</td></tr>
+                            <tr><td>Testing</td><td>180 passing tests (5 unit + 3 browser), build_mock_state/build_completed_state fixtures, shinytest2 E2E</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Cluster-first adaptive routing</strong> &mdash; always routes toward the highest-scoring unconfirmed cluster, creating natural conversational flow. Exit conditions keep assessment under 5 minutes</li>
+                            <li><strong>Data-driven question logic via wide CSV</strong> &mdash; each question row carries 360 dynamic columns. Domain experts can tune the assessment by editing spreadsheet cells without touching code</li>
+                            <li><strong>Constraint-gated solution filtering before scoring</strong> &mdash; hard-excluded by budget/time/support/sector before composite scoring runs. Exclusion reasons surfaced in advisor report</li>
+                            <li><strong>Expression-evaluated node status rules</strong> &mdash; each process map node stores an R expression evaluated at runtime. Adding a new node means adding one CSV row</li>
+                            <li><strong>Separated engine from reactivity</strong> &mdash; R/engine.R contains pure functions (no Shiny dependencies), making the scoring pipeline independently testable</li>
+                            <li><strong>Three-audience output design</strong> &mdash; Output A: plain language for SME owners. Output B: evidence tables for advisors. Output C: analytical visualizations for consultants</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project 5: Policy Intelligence -->
+            <div class="project" data-tags="policy python ai cloud">
+                <div class="project-header">
+                    <h3>Policy Intelligence Platform &mdash; Django + HTMX</h3>
+                    <div class="tags">
+                        <span class="tag tag-django">Django</span>
+                        <span class="tag tag-python">Python</span>
+                        <span class="tag tag-ai">AI/LLM</span>
+                        <span class="tag tag-cloud">Cloud</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    Policy analytics platform for monitoring the EU Council Recommendation on Fair Transition across 27 member states.
+                    Ingests 1,000+ policy measures from MongoDB, provides 14 interactive Plotly visualisations with 11 filter dimensions,
+                    and layers AI-powered analysis &mdash; chart narratives, strategic intelligence briefs, gap analysis, and RAG-based semantic policy search.
+                </p>
+                <ul class="highlights">
+                    <li>14+ Plotly charts with 11 simultaneous filter dimensions</li>
+                    <li>RAG pipeline: query embedding, MongoDB vector search, top-5 retrieval, LLM answer with citations</li>
+                    <li>6-section strategic intelligence framework with executive synthesis</li>
+                    <li>Filter-scoped AI context: every prompt includes active filter state</li>
+                    <li>Measure deduplication via linkage collection at query time</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> Python &middot; Django &middot; HTMX &middot; MongoDB &middot; Plotly &middot; Tailwind CSS &middot; Cerebras API &middot; Cloud Run</p>
+                <a class="demo-link" href="https://policy-dashboard-176552537835.europe-west1.run.app/">Live Demo</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>Django 5 + HTMX (partial page loads, no SPA), Tailwind CSS, responsive grid layout</td></tr>
+                            <tr><td>Visualisation</td><td>14+ Plotly chart types (choropleth, bar, pie, heatmap, stacked bar), responsive sizing</td></tr>
+                            <tr><td>Data pipeline</td><td>MongoDB aggregation pipelines with allowDiskUse, QueryBuilder mapping 11 filter dimensions to $match/$unwind/$regex stages</td></tr>
+                            <tr><td>AI integration</td><td>8 generation functions: chart narratives, document analysis, in-depth analysis (5 focus modes), Q&amp;A, strategic analysis (6 sections + synthesis), batch/country summaries, gap analysis</td></tr>
+                            <tr><td>RAG pipeline</td><td>Query embedding, MongoDB $vectorSearch, top-5 retrieval, metadata enrichment, LLM answer with source citations</td></tr>
+                            <tr><td>Prompt engineering</td><td>8 specialised system personas, filter-aware context injection, &lt;think&gt; tag stripping for reasoning models</td></tr>
+                            <tr><td>Caching</td><td>Django LocMem cache with namespace keys (ai:{type}:{md5}), filter-aware invalidation, 1-hour TTL</td></tr>
+                            <tr><td>Deployment</td><td>Docker (python:3.12-slim), gunicorn (2 workers + 4 threads), Cloud Run (512MB, auto-scale 0-2), MongoDB Atlas</td></tr>
+                            <tr><td>Seeding</td><td>seed_mongo.py generates 300 docs / 1,050 measures / 80 linkage groups across 14 EU countries</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Filter-scoped AI context</strong> &mdash; every AI prompt includes the active filter state as a human-readable preamble, so LLM responses reflect the user's current view</li>
+                            <li><strong>Deduplication at query time</strong> &mdash; linkage collection maps duplicates to canonical IDs. Matched canonicals expand to include all duplicates; when displaying, duplicates are collapsed</li>
+                            <li><strong>Document-grounded deep analysis</strong> &mdash; in-depth analysis uses the full parsed document text (up to 25K chars) rather than just metadata, enabling the LLM to cite specific provisions</li>
+                            <li><strong>Graceful AI degradation</strong> &mdash; when no API key is configured, all AI endpoints return informative placeholders, keeping the dashboard fully functional for data exploration</li>
+                            <li><strong>Slim Docker image</strong> &mdash; copies only the 6 modules Django actually imports, keeping the image under 300MB</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project 6: Power BI Code-First -->
+            <div class="project" data-tags="business powerbi python">
+                <div class="project-header">
+                    <h3>Power BI Dashboards from Code &mdash; Zero Manual UI Work</h3>
+                    <div class="tags">
+                        <span class="tag tag-powerbi">Power BI</span>
+                        <span class="tag tag-python">Python</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    4 production-ready Power BI dashboards built entirely from code using a code-first workflow.
+                    MCP Server handles data loading, relationships, and DAX measures. Python scripts generate
+                    all visual pages as PBIR JSON files. Zero manual UI work &mdash; reproducible, version-controllable, scriptable.
+                </p>
+                <ul class="highlights">
+                    <li>E-Commerce: 4 pages, 27 DAX measures, SUMX with RELATED, SAMEPERIODLASTYEAR</li>
+                    <li>Hospital: 4 pages, 32 measures, EARLIER self-join for 30-day readmissions</li>
+                    <li>HR: 4 pages, 34 measures, LASTDATE snapshot pattern, POWER annualized rates</li>
+                    <li>Supply Chain: 5 pages, 42 measures, 3-fact model, 8x USERELATIONSHIP</li>
+                    <li>All visuals generated as JSON (PBIR format) &mdash; no drag-and-drop</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> Power BI &middot; DAX &middot; Python &middot; PBIR/JSON &middot; MCP Server</p>
+                <a class="demo-link" href="https://github.com/emantzoo/powerbi-code-first-dashboards">GitHub Repo</a>
+                <details>
+                    <summary>Read more &mdash; DAX Skills &amp; Data Model Patterns</summary>
+                    <div class="detail-section">
+                        <h4>DAX Skills Demonstrated</h4>
+                        <table>
+                            <tr><th>Skill</th><th>Where Used</th></tr>
+                            <tr><td>LASTDATE (snapshot)</td><td>HR headcount, Supply Chain inventory &mdash; point-in-time values</td></tr>
+                            <tr><td>USERELATIONSHIP</td><td>All projects &mdash; inactive relationships for multi-fact models</td></tr>
+                            <tr><td>DATEDIFF</td><td>Hospital LOS &amp; wait times, HR tenure, Supply Chain lead times</td></tr>
+                            <tr><td>EARLIER (self-join)</td><td>Hospital 30-day readmission detection</td></tr>
+                            <tr><td>SAMEPERIODLASTYEAR</td><td>All projects &mdash; YoY comparisons</td></tr>
+                            <tr><td>TOTALYTD / TOTALMTD</td><td>All projects &mdash; period-to-date accumulations</td></tr>
+                            <tr><td>DATESINPERIOD</td><td>E-Commerce L3M/L12M, Supply Chain rolling 3-month</td></tr>
+                            <tr><td>SUMX with RELATED</td><td>E-Commerce Total Cost (cross-table calculation)</td></tr>
+                            <tr><td>POWER function</td><td>HR annualized attrition rate (compounding monthly rate)</td></tr>
+                            <tr><td>SWITCH (RAG colors)</td><td>All projects &mdash; conditional formatting with hex codes</td></tr>
+                            <tr><td>VAR + RETURN</td><td>HR Gender Pay Gap (multi-variable computation)</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Data Model Patterns</h4>
+                        <ul class="arch-list">
+                            <li><strong>Single-fact star schema</strong> &mdash; E-Commerce, Hospital, HR: one fact table surrounded by dimensions + Calendar</li>
+                            <li><strong>Multi-fact model</strong> &mdash; Supply Chain: 3 fact tables (Orders, InventorySnapshot, ShipmentRoutes) sharing DimProduct, DimSupplier, DimWarehouse via active + inactive relationships</li>
+                            <li><strong>Semi-additive measures</strong> &mdash; inventory on-hand uses LASTDATE to get point-in-time values rather than summing across time</li>
+                            <li><strong>Pre-aggregated fact table</strong> &mdash; FactShipmentRoutes stores route-level aggregates for performance, avoiding real-time joins</li>
+                            <li><strong>Code-first PBIR workflow</strong> &mdash; visual.json files define each chart as JSON with type, position, size, and data bindings. Python generates all pages programmatically</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project: Herbicide Efficacy Analysis -->
+            <div class="project" data-tags="stats-ml r science">
+                <div class="project-header">
+                    <h3>Herbicide Efficacy Analysis &mdash; Greenhouse Experiment</h3>
+                    <div class="tags">
+                        <span class="tag tag-r">R</span>
+                        <span class="tag tag-r">R Markdown</span>
+                        <span class="tag tag-ai">Statistics</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    A comprehensive statistical analysis of a simulated greenhouse experiment evaluating herbicide treatments
+                    against a resistant weed species. Demonstrates end-to-end biostatistical workflow &mdash; from experimental
+                    design (RCBD with repeated measures) through mixed models, dose-response curves, and multivariate analysis,
+                    all in a single reproducible R Markdown report.
+                </p>
+                <ul class="highlights">
+                    <li>Mixed ANOVA with repeated measures, Dunnett&rsquo;s test, Abbott&rsquo;s efficacy, effect sizes (Cohen&rsquo;s d + partial &eta;&sup2;)</li>
+                    <li>Negative binomial GLMM for count data with DHARMa simulation-based diagnostics</li>
+                    <li>MANOVA, PCA biplot with 95% confidence ellipses, PERMANOVA robustness check</li>
+                    <li>4-parameter log-logistic dose-response model (drc), bootstrap CIs for ED50, model comparison (LL.4 vs Weibull)</li>
+                    <li>Publication-quality output: gtsummary Table 1, raincloud plots, interactive DT tables, correlation heatmaps</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> R &middot; R Markdown &middot; afex &middot; emmeans &middot; glmmTMB &middot; drc &middot; boot &middot; FactoMineR &middot; vegan &middot; DHARMa &middot; ggdist &middot; gtsummary &middot; bookdown</p>
+                <a class="demo-link" href="https://emantzoo.github.io/palmer-amaranth-analysis/">Live Report</a>
+                <a class="demo-link" href="https://github.com/emantzoo/palmer-amaranth-analysis">GitHub</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Experimental design</td><td>RCBD: 4 blocks &times; 6 treatments &times; 3 pots &times; 3 time points (216 obs), mock data via multivariate simulation</td></tr>
+                            <tr><td>Univariate models</td><td>afex::aov_car (mixed ANOVA), glmmTMB (negative binomial GLMM), emmeans (Dunnett&rsquo;s contrasts)</td></tr>
+                            <tr><td>Effect sizes</td><td>effectsize: partial &eta;&sup2; for ANOVA, Cohen&rsquo;s d forest plot with 95% CI for treatment vs control</td></tr>
+                            <tr><td>Multivariate</td><td>MANOVA (Pillai&rsquo;s trace), FactoMineR PCA with factoextra biplot, vegan::adonis2 PERMANOVA</td></tr>
+                            <tr><td>Dose-response</td><td>drc::drm LL.4 + W1.4 + W2.4, AIC model comparison, confidence bands, ED10&ndash;ED90 with delta CIs</td></tr>
+                            <tr><td>Bootstrap</td><td>1000-resample nonparametric bootstrap for ED50 with percentile CI (boot package)</td></tr>
+                            <tr><td>Diagnostics</td><td>DHARMa simulation residuals (GLMM), performance::check_model (ANOVA), QQ + Cook&rsquo;s distance</td></tr>
+                            <tr><td>Output</td><td>bookdown::html_document2 with floating TOC, numbered figures, gtsummary tables, DT interactive data</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Mock data by design</strong> &mdash; transparent set.seed(42) simulation with correlated multivariate responses, block/pot random effects, and realistic missingness; shareable without confidentiality concerns</li>
+                            <li><strong>GLMM over ANOVA for counts</strong> &mdash; true leaf count modeled with negative binomial (not normal ANOVA) to respect the data-generating process</li>
+                            <li><strong>Dunnett&rsquo;s over Bonferroni</strong> &mdash; purpose-built many-to-one comparison is more powerful when all tests compare to a single control</li>
+                            <li><strong>Bootstrap + delta CIs</strong> &mdash; both analytical and resampling-based uncertainty for ED50, demonstrating awareness of small-sample limitations</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project: agrideshr R Package -->
+            <div class="project" data-tags="stats-ml r science">
+                <div class="project-header">
+                    <h3>agrideshr &mdash; Agricultural Experimental Designs in R</h3>
+                    <div class="tags">
+                        <span class="tag tag-r">R</span>
+                        <span class="tag tag-r">R Package</span>
+                        <span class="tag tag-ai">Statistics</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    A tutorial R package with a pkgdown website covering five classical experimental designs
+                    used in agricultural research. Each design includes a built-in dataset, a detailed vignette
+                    with full analysis pipeline, and a helper function for assumption checking.
+                </p>
+                <ul class="highlights">
+                    <li>5 designs: CRD, RCBD, Latin Square, Factorial, Split-Plot</li>
+                    <li>5 built-in datasets with roxygen2 documentation</li>
+                    <li>Each vignette: EDA, model fitting, assumption checks, Tukey HSD, emmeans contrasts</li>
+                    <li>Decision flowchart: &ldquo;Which design should I use?&rdquo;</li>
+                    <li>R CMD check passes with 0 errors, 0 warnings, 0 notes</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> R &middot; ggplot2 &middot; emmeans &middot; lmerTest &middot; pkgdown &middot; GitHub Actions</p>
+                <a class="demo-link" href="https://emantzoo.github.io/agrideshr/">pkgdown Site</a>
+                &nbsp;&middot;&nbsp;
+                <a class="demo-link" href="https://github.com/emantzoo/agrideshr">GitHub Repo</a>
+                <details>
+                    <summary>Read more &mdash; Designs &amp; Analysis Pipeline</summary>
+                    <div class="detail-section">
+                        <h4>Experimental Designs</h4>
+                        <table>
+                            <tr><th>Design</th><th>Model</th><th>Use Case</th></tr>
+                            <tr><td>CRD</td><td><code>aov(Y ~ A)</code></td><td>Homogeneous units, single factor</td></tr>
+                            <tr><td>RCBD</td><td><code>aov(Y ~ Block + A)</code></td><td>One blocking factor</td></tr>
+                            <tr><td>Latin Square</td><td><code>aov(Y ~ Row + Col + A)</code></td><td>Two blocking factors (grid)</td></tr>
+                            <tr><td>Factorial</td><td><code>aov(Y ~ A * B)</code></td><td>Crossed factors + interaction</td></tr>
+                            <tr><td>Split-Plot</td><td><code>lmer(Y ~ A*B + (1|Rep:A))</code></td><td>Restricted randomisation</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Each Vignette Covers</h4>
+                        <ul class="arch-list">
+                            <li><strong>When to Use</strong> &mdash; decision criteria for choosing the design</li>
+                            <li><strong>Exploratory Visualization</strong> &mdash; ggplot2 boxplots, interaction plots</li>
+                            <li><strong>Model Fitting</strong> &mdash; aov() for fixed designs, lmer() for split-plot</li>
+                            <li><strong>Assumption Checking</strong> &mdash; Q-Q plot, Shapiro-Wilk, Levene&rsquo;s test via custom <code>check_assumptions()</code></li>
+                            <li><strong>Post-hoc Comparisons</strong> &mdash; Tukey HSD and emmeans pairwise contrasts with CLD</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project: Minecraft Education Algorithm Games -->
+            <div class="project" data-tags="educational python">
+                <div class="project-header">
+                    <h3>Minecraft Education &mdash; Algorithm Games</h3>
+                    <div class="tags">
+                        <span class="tag tag-python">Python</span>
+                        <span class="tag tag-minecraft">MakeCode</span>
+                        <span class="tag tag-ai">Educational</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    Two educational games built with MakeCode Python for Minecraft Education Edition that make
+                    classification, search strategies, and optimization tangible through gameplay. An AI agent
+                    sorts animals into pens using two classification strategies, and navigates a procedurally
+                    generated reward grid using four search algorithms.
+                </p>
+                <ul class="highlights">
+                    <li>Game 1: Animal sorting with fine-grained (5 pens) vs coarse (2 categories) classification, 70/30 weighted spawn distribution</li>
+                    <li>Game 2: Gold Hunt with 4 search strategies &mdash; Random Walk, Greedy, Greedy + No Backtrack (XOR trick), Greedy + Avoid Visited</li>
+                    <li>Fisher-Yates shuffle adapted for MakeCode constraints, backtracking prevention via bitwise XOR on direction indices</li>
+                    <li>Interactive browser demo recreates both games with React &mdash; no Minecraft license needed</li>
+                </ul>
+                <p class="stack"><strong>Stack:</strong> MakeCode Python &middot; Minecraft Education Edition &middot; React (browser demo)</p>
+                <a class="demo-link" href="https://emantzoo.github.io/minecraft-education-games/">Live Demo</a>
+                <a class="demo-link" href="https://github.com/emantzoo/minecraft-education-games">GitHub</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Game Design</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Game 1: Sorting</td><td>Agent patrols 50 spawned animals, sorts by type (lucky1: 5 pens) or category (lucky2: FARM/EXOTIC)</td></tr>
+                            <tr><td>Game 2: Search</td><td>10&times;10 grid with Stone (+3), Diamond (+5), Lava (-5), Gold (+10); 4 strategies compete</td></tr>
+                            <tr><td>Backtrack prevention</td><td>XOR^1 on direction indices (0&harr;1, 2&harr;3) gives opposite direction in O(1)</td></tr>
+                            <tr><td>State tracking</td><td>Visited blocks transform to colored wool, giving real-time visual trail of agent&rsquo;s path</td></tr>
+                            <tr><td>Shuffle algorithm</td><td>Fisher-Yates adapted for MakeCode Python (no len(), no range())</td></tr>
+                            <tr><td>Path evaluation</td><td>test_paths runs 5 trials from fixed start with random detours, computing reward/step ratios</td></tr>
+                            <tr><td>Browser demo</td><td>Self-contained HTML with React 18 + Babel standalone from CDN, no build step</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Educational Design</h4>
+                        <ul class="arch-list">
+                            <li><strong>Tangible algorithm comparison</strong> &mdash; students watch agents make decisions in real time, comparing random vs greedy vs memory-augmented strategies on identical grids</li>
+                            <li><strong>Classification granularity tradeoff</strong> &mdash; lucky1 (5 types) vs lucky2 (2 categories) demonstrates precision vs speed in data categorization</li>
+                            <li><strong>Visual state tracking</strong> &mdash; wool markers make visited cells immediately visible, building intuition for graph traversal and state management</li>
+                            <li><strong>Progressive complexity</strong> &mdash; Random Walk establishes baseline, each subsequent strategy adds one improvement, making algorithmic thinking incremental</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+        <h2 class="section-title">Skills &amp; Tools</h2>
+        <div class="skills-grid">
+            <div class="skill-group">
+                <h4>Languages</h4>
+                <p>Python &middot; R &middot; SQL &middot; DAX &middot; JavaScript</p>
+            </div>
+            <div class="skill-group">
+                <h4>Data &amp; BI</h4>
+                <p>Pandas &middot; Power BI &middot; Plotly &middot; ggplot2 &middot; Streamlit &middot; Shiny</p>
+            </div>
+            <div class="skill-group">
+                <h4>Web &amp; Backend</h4>
+                <p>Django &middot; HTMX &middot; Tailwind CSS &middot; MongoDB &middot; SQLite &middot; PostgreSQL</p>
+            </div>
+            <div class="skill-group">
+                <h4>AI / ML</h4>
+                <p>LLM integration &middot; RAG pipelines &middot; scikit-learn &middot; Prompt engineering</p>
+            </div>
+            <div class="skill-group">
+                <h4>DevOps &amp; Cloud</h4>
+                <p>Docker &middot; Google Cloud Run &middot; Azure &middot; GitHub Actions &middot; WhiteNoise</p>
+            </div>
+            <div class="skill-group">
+                <h4>Domain Expertise</h4>
+                <p>Statistical disclosure &middot; Fisheries science &middot; EU policy analytics &middot; Digital transformation</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <div class="skills-grid">
+            <div class="skill-group">
+                <h4>Google</h4>
+                <p>Advanced Data Analytics Specialization (2025)</p>
+                <p>Business Intelligence Specialization (2025)</p>
+            </div>
+            <div class="skill-group">
+                <h4>Microsoft</h4>
+                <p>Azure Machine Learning for Data Scientists (2025)</p>
+                <p>Power BI &amp; Power Virtual Agents (2025)</p>
+                <p>Data Visualization &amp; Reporting with Generative AI (2025)</p>
+            </div>
+            <div class="skill-group">
+                <h4>UC Davis</h4>
+                <p>Geospatial Analysis with ArcGIS (2025)</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="skills-grid">
+            <div class="skill-group">
+                <h4>PhD</h4>
+                <p>Quantitative Ecology &amp; Statistical Modeling &mdash; University of Copenhagen / DTU-Aqua, Denmark (2006&ndash;2010). Marie Curie Fellowship. Meta-analysis and hierarchical modeling of population dynamics.</p>
+            </div>
+            <div class="skill-group">
+                <h4>MSc</h4>
+                <p>Ecology &amp; Environmental Management &mdash; University of Patras, Greece (2003&ndash;2006)</p>
+            </div>
+            <div class="skill-group">
+                <h4>BSc</h4>
+                <p>Biology &mdash; University of Patras, Greece (1998&ndash;2003)</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <div class="container">
+        <p>Eirini Mantzouni &middot; Athens, Greece &middot; <a href="https://github.com/emantzoo">GitHub</a></p>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.filter-pill');
+    const projects = document.querySelectorAll('.project');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            buttons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.dataset.filter;
+            projects.forEach(p => {
+                const tags = (p.dataset.tags || '').split(' ');
+                if (filter === 'all' || tags.includes(filter)) {
+                    p.classList.remove('hidden');
+                } else {
+                    p.classList.add('hidden');
+                }
+            });
+        });
+    });
+});
+</script>
+</body>
+</html>

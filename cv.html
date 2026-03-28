@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Eirini Mantzouni</title>
+    <style>
+        :root {
+            --color-text-primary: #c9d1d9;
+            --color-text-secondary: #8b949e;
+            --color-text-tertiary: #6e7681;
+            --color-border-secondary: #30363d;
+            --color-border-tertiary: #21262d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0d1117; color: #c9d1d9; }
+        a { color: #58a6ff; }
+        .back-bar { text-align: center; padding: 16px; }
+        .back-bar a { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 13px; color: #8b949e; background: #161b22; border: 1px solid #30363d; padding: 6px 18px; border-radius: 6px; text-decoration: none; }
+        .back-bar a:hover { border-color: #58a6ff; color: #c9d1d9; }
+        @media print {
+            body { background: #fff; }
+            :root {
+                --color-text-primary: #1a1a1a;
+                --color-text-secondary: #555;
+                --color-text-tertiary: #888;
+                --color-border-secondary: #ccc;
+                --color-border-tertiary: #ddd;
+            }
+            .back-bar { display: none; }
+            .cv-contact a { color: #555; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="back-bar">
+    <a href="index.html">&larr; Back to Portfolio</a>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  .cv-wrap { font-family: 'DM Sans', sans-serif; font-weight: 300; color: var(--color-text-primary); max-width: 860px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+  .cv-header { border-bottom: 1.5px solid var(--color-text-primary); padding-bottom: 1.25rem; margin-bottom: 1.75rem; }
+  .cv-name { font-family: 'EB Garamond', serif; font-size: 42px; font-weight: 400; letter-spacing: -0.5px; margin: 0 0 0.2rem; line-height: 1.1; }
+  .cv-title { font-size: 13px; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-text-secondary); margin: 0 0 0.9rem; }
+  .cv-contact { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 13px; color: var(--color-text-secondary); }
+  .cv-contact a { color: var(--color-text-secondary); text-decoration: none; border-bottom: 0.5px solid var(--color-border-secondary); }
+  .cv-contact a:hover { color: var(--color-text-primary); }
+
+  .cv-body { display: grid; grid-template-columns: 200px 1fr; gap: 0 2.5rem; }
+
+  .cv-sidebar { }
+  .cv-main { border-left: 0.5px solid var(--color-border-tertiary); padding-left: 2rem; }
+
+  .cv-section { margin-bottom: 2rem; }
+  .cv-section-label { font-size: 10px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-text-tertiary); margin: 0 0 0.75rem; padding-bottom: 0.4rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+
+  .skill-group { margin-bottom: 0.85rem; }
+  .skill-cat { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); margin: 0 0 0.2rem; }
+  .skill-list { font-size: 12px; color: var(--color-text-primary); line-height: 1.6; }
+
+  .lang-item { font-size: 12.5px; margin-bottom: 0.35rem; }
+  .lang-level { font-size: 11px; color: var(--color-text-tertiary); }
+
+  .cert-item { font-size: 11.5px; line-height: 1.5; margin-bottom: 0.4rem; color: var(--color-text-primary); }
+  .cert-year { color: var(--color-text-tertiary); font-size: 10.5px; }
+
+  .summary-text { font-family: 'EB Garamond', serif; font-size: 16.5px; line-height: 1.75; color: var(--color-text-primary); margin: 0 0 1.75rem; }
+
+  .exp-item { margin-bottom: 1.6rem; }
+  .exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.15rem; flex-wrap: wrap; gap: 4px; }
+  .exp-role { font-size: 14px; font-weight: 500; }
+  .exp-dates { font-size: 11.5px; color: var(--color-text-tertiary); white-space: nowrap; }
+  .exp-org { font-size: 12.5px; color: var(--color-text-secondary); margin: 0 0 0.5rem; }
+  .exp-desc { font-size: 13px; line-height: 1.65; color: var(--color-text-primary); margin: 0 0 0.4rem; font-style: italic; font-family: 'EB Garamond', serif; font-size: 14.5px; }
+  .exp-bullets { margin: 0; padding-left: 1.1rem; }
+  .exp-bullets li { font-size: 12.5px; line-height: 1.65; margin-bottom: 0.25rem; color: var(--color-text-primary); }
+
+  .project-item { margin-bottom: 1.3rem; padding-bottom: 1.3rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .project-item:last-of-type { border-bottom: none; }
+  .project-name { font-size: 13.5px; font-weight: 500; margin: 0 0 0.25rem; }
+  .project-desc { font-size: 12.5px; line-height: 1.65; color: var(--color-text-primary); margin: 0 0 0.3rem; }
+  .project-stack { font-size: 11px; color: var(--color-text-tertiary); font-family: 'DM Sans', monospace; letter-spacing: 0.3px; }
+
+  .pub-item { font-size: 12px; line-height: 1.65; margin-bottom: 0.75rem; color: var(--color-text-primary); }
+  .pub-item em { font-family: 'EB Garamond', serif; font-style: italic; }
+  .pub-note { font-size: 11px; color: var(--color-text-tertiary); margin-top: 0.5rem; }
+
+  .edu-item { margin-bottom: 1rem; }
+  .edu-degree { font-size: 13px; font-weight: 500; margin: 0 0 0.1rem; }
+  .edu-inst { font-size: 12px; color: var(--color-text-secondary); }
+  .edu-note { font-size: 11.5px; color: var(--color-text-tertiary); font-style: italic; }
+
+  .section-divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.5rem 0; }
+
+  .portfolio-ref { font-size: 11.5px; color: var(--color-text-tertiary); margin-top: 0.5rem; }
+  .portfolio-ref a { color: var(--color-text-secondary); }
+
+  @media (max-width: 700px) {
+    .cv-body { grid-template-columns: 1fr; }
+    .cv-main { border-left: none; padding-left: 0; border-top: 0.5px solid var(--color-border-tertiary); padding-top: 1.5rem; margin-top: 1rem; }
+  }
+</style>
+
+<div class="cv-wrap">
+
+  <div class="cv-header">
+    <p class="cv-title">Data Analyst &middot; Statistical Researcher &middot; Fisheries Dynamics Biologist &middot; PhD</p>
+    <h1 class="cv-name">Eirini Mantzouni</h1>
+    <div class="cv-contact">
+      <span>Athens, Greece</span>
+<a href="https://emantzoo.github.io">emantzoo.github.io</a>
+      <a href="https://www.linkedin.com/in/irene-mantzouni-0b47b8283/">LinkedIn</a>
+      <a href="https://github.com/emantzoo">GitHub</a>
+    </div>
+  </div>
+
+  <div class="cv-body">
+
+    <div class="cv-sidebar">
+
+      <div class="cv-section">
+        <p class="cv-section-label">Skills</p>
+        <div class="skill-group">
+          <p class="skill-cat">Languages</p>
+          <p class="skill-list">Python, R, SQL, DAX, JavaScript</p>
+        </div>
+        <div class="skill-group">
+          <p class="skill-cat">Data &amp; BI</p>
+          <p class="skill-list">Pandas, Power BI, Tableau, Plotly, ggplot2, R Shiny, Streamlit</p>
+        </div>
+        <div class="skill-group">
+          <p class="skill-cat">Web &amp; Backend</p>
+          <p class="skill-list">Django, HTMX, MongoDB, SQLite, PostgreSQL</p>
+        </div>
+        <div class="skill-group">
+          <p class="skill-cat">AI / ML</p>
+          <p class="skill-list">LLM integration, RAG pipelines, prompt engineering, scikit-learn, SDC</p>
+        </div>
+        <div class="skill-group">
+          <p class="skill-cat">DevOps &amp; Cloud</p>
+          <p class="skill-list">Docker, Google Cloud Run, Azure, GitHub Actions</p>
+        </div>
+        <div class="skill-group">
+          <p class="skill-cat">Other</p>
+          <p class="skill-list">ArcGIS, QGIS, GDPR compliance, Agile, pytest</p>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <p class="cv-section-label">Education</p>
+        <div class="edu-item">
+          <p class="edu-degree">PhD &mdash; Quantitative Ecology &amp; Statistical Modeling</p>
+          <p class="edu-inst">University of Copenhagen / DTU-Aqua, Denmark &middot; 2006&ndash;2010</p>
+          <p class="edu-note">Marie Curie Fellowship &middot; META-OCEANS network</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">MSc &mdash; Ecology &amp; Environmental Management</p>
+          <p class="edu-inst">University of Patras &middot; 2003&ndash;2006</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">BSc &mdash; Biology</p>
+          <p class="edu-inst">University of Patras &middot; 1998&ndash;2003</p>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <p class="cv-section-label">Languages</p>
+        <div class="lang-item">Greek <span class="lang-level">&mdash; Native</span></div>
+        <div class="lang-item">English <span class="lang-level">&mdash; C2 Proficient</span></div>
+        <div class="lang-item">German <span class="lang-level">&mdash; Basic</span></div>
+      </div>
+
+      <div class="cv-section">
+        <p class="cv-section-label">Certifications</p>
+        <div class="cert-item">Google Advanced Data Analytics <span class="cert-year">2025</span></div>
+        <div class="cert-item">Google Business Intelligence <span class="cert-year">2025</span></div>
+        <div class="cert-item">Azure ML for Data Scientists <span class="cert-year">2025</span></div>
+        <div class="cert-item">Microsoft Power BI &amp; Power Virtual Agents <span class="cert-year">2025</span></div>
+        <div class="cert-item">Data Visualization with Generative AI &middot; Microsoft <span class="cert-year">2025</span></div>
+        <div class="cert-item">Geospatial Analysis with ArcGIS &middot; UC Davis <span class="cert-year">2025</span></div>
+      </div>
+
+    </div>
+
+    <div class="cv-main">
+
+      <div class="cv-section">
+        <p class="summary-text">Data Analyst and full-stack application developer with 8+ years of experience in statistical modeling, ETL pipelines, and business intelligence. PhD in Quantitative Ecology (Marie Curie Fellowship, University of Copenhagen). Expert in Python, R, SQL, Power BI, and cloud deployment &mdash; delivering production-grade data systems for EU institutions, government agencies, and research projects.</p>
+        <p class="summary-text">External Expert for the EU Scientific, Technical and Economic Committee for Fisheries (STECF/JRC) since 2017, contributing to stock assessments, regulatory impact analyses, and fisheries data infrastructure across 9+ Expert Working Groups. Currently contributing to European Commission projects (DG EMPL) involving AI-powered analytics and digital transformation.</p>
+      </div>
+
+      <hr class="section-divider">
+
+      <div class="cv-section">
+        <p class="cv-section-label">Selected Projects</p>
+
+        <div class="project-item">
+          <p class="project-name">Statistical Disclosure Control &mdash; Streamlit App</p>
+          <p class="project-desc">Production anonymization application protecting individual-level datasets against re-identification. Backward elimination risk analysis, 40+ rule decision engine, adaptive retry loop with cross-method fallbacks. Four protection methods; optional AI column classification via Cerebras API and R/sdcMicro integration. Validated on 17-dataset test suite including Greek administrative data.</p>
+          <p class="project-stack">Python &middot; Streamlit &middot; Pandas &middot; Plotly &middot; scikit-learn &middot; R/sdcMicro &middot; Cerebras API</p>
+        </div>
+
+        <div class="project-item">
+          <p class="project-name">Policy Intelligence Platform &mdash; Django + HTMX</p>
+          <p class="project-desc">Policy analytics platform monitoring the EU Council Recommendation on Fair Transition across 27 member states (DG EMPL). 1,000+ policy measures from MongoDB, 14 interactive Plotly visualizations with 11 filter dimensions, and AI-powered analysis including RAG-based semantic policy search.</p>
+          <p class="project-stack">Python &middot; Django &middot; HTMX &middot; MongoDB &middot; Plotly &middot; Tailwind CSS &middot; Cerebras API &middot; Cloud Run</p>
+        </div>
+
+        <div class="project-item">
+          <p class="project-name">Digital Maturity Assessment Dashboard &mdash; R Shiny</p>
+          <p class="project-desc">Interactive dashboard for digital maturity assessment of Greek businesses. Full diagnostic reports: SWOT classification, priority matrices, gap analysis, roadmaps, and AI-generated narratives per tab. Three data-entry modes including AI conversational assessment. Deployed on Cloud Run.</p>
+          <p class="project-stack">R &middot; Shiny &middot; bslib &middot; ggplot2 &middot; plotly &middot; Cerebras API &middot; Docker &middot; Cloud Run</p>
+        </div>
+
+        <div class="project-item">
+          <p class="project-name">IAP Citrus &mdash; R Shiny (PRIMA Grant, PLANT-B)</p>
+          <p class="project-desc">Production web application for quantifying pesticide environmental footprint in real time across 4 Mediterranean countries. SQLite database with 15+ tables and 9,000+ reference records. Extends the IAP methodology developed at BPI/SAGE10. Dockerized and deployed on Google Cloud Run.</p>
+          <p class="project-stack">R &middot; Shiny &middot; bslib &middot; SQLite &middot; Docker &middot; Google Cloud Run</p>
+        </div>
+
+        <div class="project-item">
+          <p class="project-name">Power BI Dashboards from Code &mdash; Zero Manual UI Work</p>
+          <p class="project-desc">4 production-ready Power BI dashboards (E-Commerce, Hospital, HR, Supply Chain) built entirely from code. MCP Server for data loading, relationships, and 135 DAX measures. Python scripts generate all visual pages as PBIR JSON files. Reproducible, version-controllable, zero drag-and-drop.</p>
+          <p class="project-stack">Power BI &middot; DAX &middot; Python &middot; PBIR/JSON &middot; MCP Server</p>
+        </div>
+
+        <p class="portfolio-ref">Full project details, architecture notes, and live demos: <a href="https://emantzoo.github.io">emantzoo.github.io</a></p>
+      </div>
+
+      <hr class="section-divider">
+
+      <div class="cv-section">
+        <p class="cv-section-label">Experience</p>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Data Analyst / Statistical Researcher</span>
+            <span class="exp-dates">Jul 2025 &ndash; Present</span>
+          </div>
+          <p class="exp-org">Athens, Greece</p>
+          <ul class="exp-bullets">
+            <li>Design and implement ETL pipelines and SQL-based solutions for EU project data sources</li>
+            <li>Build and deploy interactive dashboards using Power BI, Tableau, R Shiny, and Streamlit</li>
+            <li>Develop AI-powered reporting and policy monitoring systems (DG EMPL, Fair Transition)</li>
+            <li>Implement statistical disclosure control pipelines; built SDC Methods Library</li>
+            <li>Ensure GDPR compliance and data quality assurance across all deliverables</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Business Data Analyst</span>
+            <span class="exp-dates">Apr 2025 &ndash; Jun 2025</span>
+          </div>
+          <p class="exp-org">National Documentation Centre (EKT), Hellenic Ministry of Digital Governance &middot; Athens</p>
+          <ul class="exp-bullets">
+            <li>Built automated reporting application for Digital Maturity Assessments: radar charts, SWOT, gap analyses, implementation roadmaps</li>
+            <li>Led data collection and interpretation of self-assessment questionnaires from 50+ beneficiary organizations</li>
+            <li>Supported SmartAttica-AtHeNAI EDIH project for digital transformation of Greek SMEs and public sector across 6 dimensions</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">External Expert &mdash; STECF Working Groups</span>
+            <span class="exp-dates">2017 &ndash; Present</span>
+          </div>
+          <p class="exp-org">European Commission / Joint Research Centre</p>
+          <ul class="exp-bullets">
+            <li>Invited expert across 9 EWGs: FDI Evaluation (24-11), Technical Measures Regulation (24-16, 23-15, 22-19), Landing Obligation (23-04), FDI (23-10), CFP Monitoring (18-15), Mediterranean Stock Assessments (17-15)</li>
+            <li>Statistical modeling, stock assessments, regulatory impact analyses, and technical report co-authorship</li>
+            <li>Contributed to ICES Working Groups: WKBIOPTIM2 (2018), WGCATCH (2017), WKCFCC (2008), WKHIST (2008)</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Regulatory Data Analyst / EUSAIR Coordinator</span>
+            <span class="exp-dates">Sep 2022 &ndash; Mar 2025</span>
+          </div>
+          <p class="exp-org">Hellenic Ministry of Rural Development and Food &middot; Athens</p>
+          <ul class="exp-bullets">
+            <li>Drafted national fisheries legislation transposing EU CFP obligations into Greek law</li>
+            <li>Developed National Control Programs for fisheries; produced manuals, guidelines, and decision-support software tools</li>
+            <li>Coordinated EUSAIR Pillar 1 (Blue Economy) across Adriatic-Ionian member states (2023&ndash;2024)</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Statistical Consultant (Freelance) / STECF Expert</span>
+            <span class="exp-dates">Jan 2019 &ndash; Aug 2022</span>
+          </div>
+          <p class="exp-org">Athens, Greece</p>
+          <ul class="exp-bullets">
+            <li>Continued participation in EU STECF Expert Working Groups throughout this period</li>
+            <li>Statistical analysis and data consulting for research projects</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Research Data Analyst</span>
+            <span class="exp-dates">Apr 2017 &ndash; Dec 2018</span>
+          </div>
+          <p class="exp-org">Fisheries Research Institute, Hellenic Agricultural Organisation &middot; Kavala</p>
+          <ul class="exp-bullets">
+            <li>EU National Data Collection Program (DCF): data processing, statistical analysis, and quality control</li>
+            <li>Developed data integration architecture and regional database systems for the Mediterranean and Black Sea (STREAM project)</li>
+            <li>Built stock assessment tools in R; produced analytical outputs for STECF data calls</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Lecturer &mdash; Fisheries Dynamics</span>
+            <span class="exp-dates">2016 &ndash; 2017</span>
+          </div>
+          <p class="exp-org">University of Patras, Department of Fisheries and Aquaculture Technology</p>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Research Scientist / Scientific Secretary</span>
+            <span class="exp-dates">2011 &ndash; 2014</span>
+          </div>
+          <p class="exp-org">Benaki Phytopathological Institute &middot; EU LIFE SAGE10 (LIFE09 ENV/GR/000302)</p>
+          <p class="exp-desc">Developed and validated the IAP method for quantifying environmental footprint of olive cultivation across biodiversity, ecotoxicology, pollution, and human health compartments. Methodology later adapted for citrus orchards under PRIMA PLANT-B.</p>
+          <ul class="exp-bullets">
+            <li>Developed and validated the IAP scoring methodology; trained agronomists across partner institutions</li>
+            <li>Coordinated project work packages; monitored implementation and reported to the EU</li>
+            <li>Co-authored peer-reviewed publications, technical reports, and conference presentations</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Postdoctoral Researcher</span>
+            <span class="exp-dates">Sep 2010 &ndash; Mar 2011</span>
+          </div>
+          <p class="exp-org">University of Copenhagen, Centre for Macroecology, Evolution and Climate</p>
+          <ul class="exp-bullets">
+            <li>Marine biodiversity research; statistical modeling lectures for postgraduate students</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="section-divider">
+
+      <div class="cv-section">
+        <p class="cv-section-label">Selected Publications</p>
+        <div class="pub-item">Mantzouni, I., S&oslash;rensen H., O&rsquo;Hara, R. and MacKenzie, B.R. (2010). Hierarchical modeling of temperature and habitat size effects on population dynamics of North Atlantic cod. <em>ICES Journal of Marine Science</em> 67: 833&ndash;855.</div>
+        <div class="pub-item">Mantzouni, I. and MacKenzie, B.R. (2010). Productivity responses of a widespread marine piscivore, <em>Gadus morhua</em>, to oceanic thermal extremes and trends. <em>Proceedings of the Royal Society B</em> 277: 1867&ndash;1874.</div>
+        <div class="pub-item">Mantzouni, I., Somarakis, S., Moutopoulos, D.K., Kallianiotis, A. &amp; Koutsikopoulos, C. (2007). Periodic, spatially structured matrix model for the study of anchovy population dynamics in N Aegean Sea. <em>Ecological Modelling</em> 208: 367&ndash;377.</div>
+        <div class="pub-item">Moutopoulos D.K., Prodromitis G., Mantzouni I., Koutsikopoulos C. (2016). Quantifying the implementation of Common Fisheries Policy. <em>Marine Policy</em> 70: 65&ndash;76.</div>
+        <p class="pub-note">8 peer-reviewed publications in total. 10+ EU STECF technical reports as contributing author.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
