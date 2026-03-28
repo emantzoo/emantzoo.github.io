@@ -37,6 +37,8 @@
         .section-title { font-size: 1.6em; color: #fff; margin-bottom: 32px; padding-bottom: 12px; border-bottom: 2px solid var(--border); }
 
         .projects { display: grid; grid-template-columns: 1fr; gap: 28px; }
+        .tier-title { font-size: 0.85em; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; margin-top: 8px; }
+        .projects.featured .project { border-left: 3px solid var(--accent); }
         .project { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; transition: border-color 0.2s; }
         .project:hover { border-color: var(--accent); }
         .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 12px; }
@@ -138,16 +140,15 @@
         <h1>Eirini Mantzouni</h1>
         <div class="subtitle">Data Analyst &middot; Statistical Researcher &middot; Fisheries Dynamics Biologist &middot; PhD</div>
         <p class="bio">
-            Data Analyst with 8+ years of experience in statistical modeling, ETL pipelines, and business intelligence.
-            Expert in Python, R, SQL, Power BI, and cloud deployment with a track record of delivering data-driven solutions
-            for EU institutions, government agencies, and research projects. I build full-stack data applications &mdash;
-            from automated anonymization engines to policy analytics platforms and AI-powered dashboards.
+            Data Analyst with 8+ years of experience building full-stack data applications &mdash; automated anonymization engines,
+            policy analytics platforms, AI-powered dashboards &mdash; for EU institutions, government agencies, and research projects.
+            Core stack: Python, R, SQL, Power BI, cloud deployment.
         </p>
         <p class="bio" style="margin-top: 8px;">
             PhD in Quantitative Ecology &amp; Statistical Modeling (University of Copenhagen, Marie Curie Fellowship).
-            External Expert for the EU Scientific, Technical and Economic Committee for Fisheries (STECF) since 2017,
-            contributing to stock assessments, regulatory impact analyses, and fisheries data infrastructure across 10+ Expert Working Groups.
-            Currently contributing to European Commission projects (DG EMPL) involving AI-powered analytics and digital transformation.
+            External Expert for the EU STECF since 2017, contributing to stock assessments, regulatory impact analyses,
+            and fisheries data infrastructure across 10+ Expert Working Groups. Currently contributing to European Commission
+            projects (DG EMPL) involving AI-powered analytics and digital transformation.
         </p>
         <div class="links">
             <a href="cv.html">CV</a>
@@ -159,25 +160,26 @@
     <section class="section" id="projects">
         <h2 class="section-title">Projects</h2>
         <div class="filter-pills">
-            <button class="filter-pill active" data-filter="all">All<span class="count">(11)</span></button>
+            <button class="filter-pill active" data-filter="all">All<span class="count">(12)</span></button>
         </div>
         <div class="filter-pills" style="margin-top: -16px;">
             <span style="color: var(--text-muted); font-size: 0.78em; padding: 6px 0; opacity: 0.6;">Scope</span>
-            <button class="filter-pill" data-filter="stats-ml">Statistics &amp; ML<span class="count">(4)</span></button>
+            <button class="filter-pill" data-filter="stats-ml">Statistics &amp; ML<span class="count">(5)</span></button>
             <button class="filter-pill" data-filter="policy">Policy Analytics<span class="count">(2)</span></button>
             <button class="filter-pill" data-filter="business">Business Intelligence<span class="count">(3)</span></button>
-            <button class="filter-pill" data-filter="science">Scientific Apps<span class="count">(3)</span></button>
+            <button class="filter-pill" data-filter="science">Scientific Apps<span class="count">(4)</span></button>
             <button class="filter-pill" data-filter="educational">Educational<span class="count">(1)</span></button>
         </div>
         <div class="filter-pills" style="margin-top: -16px;">
             <span style="color: var(--text-muted); font-size: 0.78em; padding: 6px 0; opacity: 0.6;">Stack</span>
             <button class="filter-pill" data-filter="r">R / Shiny<span class="count">(7)</span></button>
-            <button class="filter-pill" data-filter="python">Python<span class="count">(4)</span></button>
-            <button class="filter-pill" data-filter="ai">AI / LLM<span class="count">(3)</span></button>
+            <button class="filter-pill" data-filter="python">Python<span class="count">(5)</span></button>
+            <button class="filter-pill" data-filter="ai">AI / LLM<span class="count">(5)</span></button>
             <button class="filter-pill" data-filter="cloud">Cloud<span class="count">(4)</span></button>
             <button class="filter-pill" data-filter="powerbi">Power BI<span class="count">(1)</span></button>
         </div>
-        <div class="projects">
+        <h3 class="tier-title">Featured</h3>
+        <div class="projects featured">
 
             <!-- Project: EU FDI Explorer -->
             <div class="project" data-tags="policy r stats-ml">
@@ -190,18 +192,15 @@
                     </div>
                 </div>
                 <p class="desc">
-                    An interactive R Markdown analysis of 12 years of EU Fisheries Dependent Information (STECF FDI, 2013&ndash;2024)
-                    across all European sea basins. Combines descriptive analytics, Landing Obligation policy evaluation, and unsupervised
-                    machine learning for fleet behavioural shift detection &mdash; built as a single self-contained HTML report with
-                    drill-down charts, linked filters, and cross-plot interactivity.
+                    Interactive analysis of 5 million catch records across 23 EU Member States and 12 years of STECF fisheries data (2013&ndash;2024).
+                    Evaluates the Landing Obligation&rsquo;s impact on discards, detects fleet behavioural shifts using PCA and clustering,
+                    and delivers everything as a single self-contained HTML report with linked dashboards &mdash; no server required.
                 </p>
-                <ul class="highlights">
-                    <li>~5M catch records, 23 EU Member States, 12 years &mdash; effort trends, discard analysis, species composition</li>
-                    <li>Landing Obligation before/after analysis with STECF EWG 25-10 exemptions (de minimis &amp; survivability)</li>
-                    <li>PCA + k-means clustering on m&eacute;tier compositions to detect fleet adaptation to regulation</li>
-                    <li>5 linked dashboards (crosstalk SharedData), Sankey diagrams, sunbursts, drill-down charts, searchable tables</li>
-                    <li>Fully self-contained HTML &mdash; no server needed, all interactivity runs in the browser</li>
-                </ul>
+                <p class="desc">
+                    Five crosstalk-linked dashboards with Sankey diagrams, sunburst charts, drill-down visualisations, and searchable tables.
+                    Includes species-level discard analysis with EWG 25-10 exemption mapping and a complete ML pipeline
+                    (Hellinger transform &rarr; PCA &rarr; silhouette-optimised k-means &rarr; transition flows).
+                </p>
                 <p class="stack"><strong>Stack:</strong> R &middot; R Markdown &middot; Plotly &middot; Highcharter &middot; Crosstalk &middot; Reactable &middot; echarts4r &middot; ggiraph &middot; cluster &middot; vegan</p>
                 <a class="demo-link" href="https://emantzoo.github.io/stecf-fdi-analysis/fdi_explorer.html">Live Report</a>
                 <a class="demo-link" href="https://github.com/emantzoo/stecf-fdi-analysis">GitHub</a>
@@ -242,16 +241,15 @@
                     </div>
                 </div>
                 <p class="desc">
-                    A statistical disclosure control application that protects individual-level datasets against re-identification attacks
-                    using automated anonymization. Implements a multi-layered protection framework: backward elimination risk analysis,
-                    a 40+ rule decision engine for method selection, and an adaptive retry loop with escalation and cross-method fallbacks.
+                    Production anonymization engine that protects individual-level datasets against re-identification using four methods
+                    (k-Anonymity, Local Suppression, PRAM, Noise Addition), selected automatically by a 40+ rule decision engine.
+                    Backward elimination risk analysis drives every downstream choice &mdash; from variable classification to per-QI protection parameters.
                 </p>
-                <ul class="highlights">
-                    <li>4 protection methods (k-Anonymity, Local Suppression, PRAM, Noise Addition) with auto-selection from 40+ rules</li>
-                    <li>Backward elimination risk analysis drives QI classification, preprocessing, per-QI parameters</li>
-                    <li>Composite utility score: Pearson correlation, KL divergence, optional ML validation</li>
-                    <li>Optional AI column classification via Cerebras Qwen 235B, R/sdcMicro integration</li>
-                </ul>
+                <p class="desc">
+                    Features an adaptive retry loop with escalation and cross-method fallbacks, a composite utility score
+                    (Pearson correlation, KL divergence, optional ML validation), and optional AI-powered column classification
+                    via Cerebras Qwen 235B. Tested against 17 real-world Greek administrative datasets.
+                </p>
                 <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; Pandas &middot; Plotly &middot; scikit-learn &middot; R/sdcMicro &middot; Cerebras API</p>
                 <a class="demo-link" href="https://sdcmethods.streamlit.app/">Live Demo</a>
                 <details>
@@ -285,56 +283,56 @@
                 </details>
             </div>
 
-            <!-- Project 2: IAP -->
-            <div class="project" data-tags="science r cloud">
+            <!-- Project 5: Policy Intelligence -->
+            <div class="project" data-tags="policy python ai cloud">
                 <div class="project-header">
-                    <h3>IAP Citrus &mdash; Integrated Assessment of Pesticide Impact</h3>
+                    <h3>Policy Intelligence Platform &mdash; Django + HTMX</h3>
                     <div class="tags">
-                        <span class="tag tag-r">R/Shiny</span>
+                        <span class="tag tag-django">Django</span>
+                        <span class="tag tag-python">Python</span>
+                        <span class="tag tag-ai">AI/LLM</span>
                         <span class="tag tag-cloud">Cloud</span>
                     </div>
                 </div>
                 <p class="desc">
-                    Production web application for the PLANT-B research project (PRIMA grant, Benaki Phytopathological Institute).
-                    Helps agronomists across 4 countries record pesticide usage and quantify environmental footprint in real time
-                    using the IAP scoring methodology across biodiversity, ecotoxicology, pollution, and human health compartments.
+                    Policy analytics platform tracking the EU Council Recommendation on Fair Transition across 27 member states.
+                    Ingests 1,000+ policy measures from MongoDB and provides 14 interactive visualisations with 11 simultaneous filter
+                    dimensions &mdash; every AI prompt receives the active filter state so responses always reflect what the user is looking at.
                 </p>
-                <ul class="highlights">
-                    <li>Real-time scoring: data entry triggers full IAP pipeline, returns colour-coded impact scores in seconds</li>
-                    <li>SQLite database with 15+ tables, 9,000+ reference records</li>
-                    <li>15 Shiny modules with reactive state management, adapter pattern for scientific R functions</li>
-                    <li>Dockerized on Google Cloud Run, used across 4 Mediterranean countries</li>
-                </ul>
-                <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; plotly &middot; ggplot2 &middot; SQLite &middot; Docker &middot; Google Cloud Run</p>
-                <a class="demo-link" href="https://iap-app-176552537835.europe-west1.run.app/">Live Demo</a>
-                <a class="demo-link" href="https://github.com/emantzoo/IAP_method">GitHub</a>
+                <p class="desc">
+                    Includes a RAG-based semantic policy search (MongoDB vector search, top-5 retrieval with citations),
+                    a 6-section strategic intelligence framework, and AI-powered gap analysis. Deployed on Cloud Run with
+                    graceful degradation &mdash; the dashboard stays fully functional even without an API key.
+                </p>
+                <p class="stack"><strong>Stack:</strong> Python &middot; Django &middot; HTMX &middot; MongoDB &middot; Plotly &middot; Tailwind CSS &middot; Cerebras API &middot; Cloud Run</p>
+                <a class="demo-link" href="https://policy-dashboard-176552537835.europe-west1.run.app/">Live Demo</a>
+                <a class="demo-link" href="https://github.com/emantzoo/policy-board">GitHub</a>
                 <details>
                     <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
                     <div class="detail-section">
                         <h4>Technical Highlights</h4>
                         <table>
                             <tr><th>Layer</th><th>Technology</th></tr>
-                            <tr><td>Frontend</td><td>R/Shiny, bslib (Bootstrap 5), dark mode, CSS custom properties</td></tr>
-                            <tr><td>Visualisation</td><td>plotly, ggplot2, reactable (React-based tables), DT</td></tr>
-                            <tr><td>Database</td><td>SQLite (WAL mode) &mdash; 15+ tables, 9,000+ reference records (PPP products, active substances, ecotox thresholds)</td></tr>
-                            <tr><td>Architecture</td><td>15 Shiny modules with reactive state management, shared scoring engine adapter pattern</td></tr>
-                            <tr><td>Scoring engine</td><td>Custom R pipeline: IAP_PREP, triplet decomposition, weighted rank scoring, compartment aggregation with Scoring Impact Factors</td></tr>
-                            <tr><td>Auth</td><td>shinymanager with encrypted credentials (disabled for public demo)</td></tr>
-                            <tr><td>Deployment</td><td>Docker (rocker/shiny base), Google Cloud Run (europe-west1), Artifact Registry</td></tr>
-                            <tr><td>Testing</td><td>testthat, testServer, shinytest2 (unit + integration + E2E)</td></tr>
+                            <tr><td>Frontend</td><td>Django 5 + HTMX (partial page loads, no SPA), Tailwind CSS, responsive grid layout</td></tr>
+                            <tr><td>Visualisation</td><td>14+ Plotly chart types (choropleth, bar, pie, heatmap, stacked bar), responsive sizing</td></tr>
+                            <tr><td>Data pipeline</td><td>MongoDB aggregation pipelines with allowDiskUse, QueryBuilder mapping 11 filter dimensions to $match/$unwind/$regex stages</td></tr>
+                            <tr><td>AI integration</td><td>8 generation functions: chart narratives, document analysis, in-depth analysis (5 focus modes), Q&amp;A, strategic analysis (6 sections + synthesis), batch/country summaries, gap analysis</td></tr>
+                            <tr><td>RAG pipeline</td><td>Query embedding, MongoDB $vectorSearch, top-5 retrieval, metadata enrichment, LLM answer with source citations</td></tr>
+                            <tr><td>Prompt engineering</td><td>8 specialised system personas, filter-aware context injection, &lt;think&gt; tag stripping for reasoning models</td></tr>
+                            <tr><td>Caching</td><td>Django LocMem cache with namespace keys (ai:{type}:{md5}), filter-aware invalidation, 1-hour TTL</td></tr>
+                            <tr><td>Deployment</td><td>Docker (python:3.12-slim), gunicorn (2 workers + 4 threads), Cloud Run (512MB, auto-scale 0-2), MongoDB Atlas</td></tr>
+                            <tr><td>Seeding</td><td>seed_mongo.py generates 300 docs / 1,050 measures / 80 linkage groups across 14 EU countries</td></tr>
                         </table>
                     </div>
                     <div class="detail-section">
                         <h4>Architecture Decisions</h4>
                         <ul class="arch-list">
-                            <li><strong>Adapter pattern for the scoring engine</strong> &mdash; the original scientific R functions are wrapped, not rewritten, preserving scientific integrity while enabling a modern web interface</li>
-                            <li><strong>Wide-format storage</strong> &mdash; column names are parameter IDs, allowing the scoring engine to consume data directly without transformation</li>
-                            <li><strong>Score caching with MD5 hash invalidation</strong> &mdash; scores are recomputed only when underlying data changes, keeping the UI responsive</li>
-                            <li><strong>Modular Shiny design</strong> &mdash; each feature is an independent module with its own UI/server pair, enabling parallel development and isolated testing</li>
+                            <li><strong>Filter-scoped AI context</strong> &mdash; every AI prompt includes the active filter state as a human-readable preamble, so LLM responses reflect the user's current view</li>
+                            <li><strong>Deduplication at query time</strong> &mdash; linkage collection maps duplicates to canonical IDs. Matched canonicals expand to include all duplicates; when displaying, duplicates are collapsed</li>
+                            <li><strong>Document-grounded deep analysis</strong> &mdash; in-depth analysis uses the full parsed document text (up to 25K chars) rather than just metadata, enabling the LLM to cite specific provisions</li>
+                            <li><strong>Graceful AI degradation</strong> &mdash; when no API key is configured, all AI endpoints return informative placeholders, keeping the dashboard fully functional for data exploration</li>
+                            <li><strong>Slim Docker image</strong> &mdash; copies only the 6 modules Django actually imports, keeping the image under 300MB</li>
                         </ul>
-                    </div>
-                    <div class="detail-section">
-                        <p class="value-text">Replaced a manual workflow of Excel spreadsheets and offline R scripts with a unified web application that reduced the time from data entry to environmental impact assessment from hours to seconds.</p>
                     </div>
                 </details>
             </div>
@@ -351,20 +349,16 @@
                     </div>
                 </div>
                 <p class="desc">
-                    Feature-rich R/Shiny platform for exploratory data analysis, statistical testing, machine learning, model interpretability,
-                    and AI-assisted analysis. Upload any CSV (or use built-in datasets), then explore, analyze, model, and report &mdash; all without writing code.
-                    Includes a two-layer AI Assistant: a rule-based engine for instant recommendations (no API key needed) and an optional
-                    Gemini-powered LLM for deep natural-language analysis and cross-cutting results interpretation.
-                    40+ R packages unified in a modular architecture with comprehensive test coverage.
+                    No-code analytics platform: upload any CSV, then explore, model, and report without writing a line of code.
+                    Covers the full analysis pipeline &mdash; EDA, statistical testing (parametric/non-parametric with auto post-hoc),
+                    9 ML algorithms with full interpretability (DALEX, LIME, SHAP, PDP), PCA/clustering, and publication-ready
+                    ggstatsplot output with embedded APA-style results.
                 </p>
-                <ul class="highlights">
-                    <li>AI Assistant: rule-based engine profiles data and recommends tests/models/visualizations instantly; optional Gemini LLM (free tier) for goal-driven analysis and results interpretation across all modules</li>
-                    <li>9 ML algorithms (Linear/Logistic Regression, Elastic Net, Decision Tree, RF, GBM, XGBoost, SVM, KNN, Neural Net) with preprocessing, CV tuning, ROC curves, confusion matrices, and tree visualization</li>
-                    <li>Full interpretability: DALEX permutation importance, PDP + ALE + ICE profiles, LIME, Break Down, SHAP, interaction plots, Johnson-Neyman, standardized coefficients, publication tables (modelsummary + sjPlot)</li>
-                    <li>Statistical tests with parametric/non-parametric toggle, auto post-hoc comparisons (Tukey, Dunn, Games-Howell), resampling inference (permutation + bootstrap CIs via infer), and assumption checks</li>
-                    <li>ggstatsplot publication-ready plots with embedded APA-style results; GWalkR Tableau-like drag-and-drop; esquisse ggplot2 builder; correlation networks and Sankey diagrams</li>
-                    <li>PCA/FAMD (FactoMineR), k-means and hierarchical clustering with Hopkins statistic, elbow/silhouette/gap analysis, and cluster profiling</li>
-                </ul>
+                <p class="desc">
+                    Two-layer AI assistant: a rule-based engine gives instant recommendations offline, while an optional Gemini LLM
+                    provides deep cross-cutting interpretation across all modules. 40+ R packages unified in a modular architecture
+                    with comprehensive test coverage.
+                </p>
                 <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; caret &middot; DALEX &middot; lime &middot; ingredients &middot; Gemini API &middot; ggstatsplot &middot; plotly &middot; ggplot2 &middot; GWalkR &middot; esquisse &middot; FactoMineR &middot; reactable &middot; igraph &middot; networkD3 &middot; testthat</p>
                 <a class="demo-link" href="https://datascope-176552537835.europe-west1.run.app/">Live Demo</a>
                 <a class="demo-link" href="https://github.com/emantzoo/DataScope">GitHub</a>
@@ -405,6 +399,64 @@
                 </details>
             </div>
 
+        </div>
+
+        <h3 class="tier-title">More Projects</h3>
+        <div class="projects">
+
+            <!-- Project 2: IAP -->
+            <div class="project" data-tags="science r cloud">
+                <div class="project-header">
+                    <h3>IAP Citrus &mdash; Integrated Assessment of Pesticide Impact</h3>
+                    <div class="tags">
+                        <span class="tag tag-r">R/Shiny</span>
+                        <span class="tag tag-cloud">Cloud</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    Production web application for the PLANT-B research project (PRIMA grant, Benaki Phytopathological Institute)
+                    used by agronomists across 4 Mediterranean countries. Converts pesticide usage data into real-time environmental
+                    impact scores across biodiversity, ecotoxicology, pollution, and human health compartments &mdash; replacing
+                    a manual workflow of Excel spreadsheets and offline R scripts.
+                </p>
+                <p class="desc">
+                    SQLite backend with 15+ tables and 9,000+ reference records, 15 Shiny modules with reactive state management,
+                    and Dockerized deployment on Google Cloud Run.
+                </p>
+                <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; plotly &middot; ggplot2 &middot; SQLite &middot; Docker &middot; Google Cloud Run</p>
+                <a class="demo-link" href="https://iap-app-176552537835.europe-west1.run.app/">Live Demo</a>
+                <a class="demo-link" href="https://github.com/emantzoo/IAP_method">GitHub</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>R/Shiny, bslib (Bootstrap 5), dark mode, CSS custom properties</td></tr>
+                            <tr><td>Visualisation</td><td>plotly, ggplot2, reactable (React-based tables), DT</td></tr>
+                            <tr><td>Database</td><td>SQLite (WAL mode) &mdash; 15+ tables, 9,000+ reference records (PPP products, active substances, ecotox thresholds)</td></tr>
+                            <tr><td>Architecture</td><td>15 Shiny modules with reactive state management, shared scoring engine adapter pattern</td></tr>
+                            <tr><td>Scoring engine</td><td>Custom R pipeline: IAP_PREP, triplet decomposition, weighted rank scoring, compartment aggregation with Scoring Impact Factors</td></tr>
+                            <tr><td>Auth</td><td>shinymanager with encrypted credentials (disabled for public demo)</td></tr>
+                            <tr><td>Deployment</td><td>Docker (rocker/shiny base), Google Cloud Run (europe-west1), Artifact Registry</td></tr>
+                            <tr><td>Testing</td><td>testthat, testServer, shinytest2 (unit + integration + E2E)</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Adapter pattern for the scoring engine</strong> &mdash; the original scientific R functions are wrapped, not rewritten, preserving scientific integrity while enabling a modern web interface</li>
+                            <li><strong>Wide-format storage</strong> &mdash; column names are parameter IDs, allowing the scoring engine to consume data directly without transformation</li>
+                            <li><strong>Score caching with MD5 hash invalidation</strong> &mdash; scores are recomputed only when underlying data changes, keeping the UI responsive</li>
+                            <li><strong>Modular Shiny design</strong> &mdash; each feature is an independent module with its own UI/server pair, enabling parallel development and isolated testing</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <p class="value-text">Replaced a manual workflow of Excel spreadsheets and offline R scripts with a unified web application that reduced the time from data entry to environmental impact assessment from hours to seconds.</p>
+                    </div>
+                </details>
+            </div>
+
             <!-- Project: PD Gait Analysis Agent -->
             <div class="project" data-tags="ai python science">
                 <div class="project-header">
@@ -416,19 +468,15 @@
                     </div>
                 </div>
                 <p class="desc">
-                    An LLM-powered ReAct agent that answers natural-language questions about Parkinson&rsquo;s Disease gait data
-                    from wearable sensors. A clinician types a question and the system writes Python code to analyse the data,
-                    executes it in a sandbox, interprets results against clinical knowledge, and produces a clinically contextualised
-                    narrative answer. Architecture follows Google&rsquo;s PHIA pattern (Nature Communications, Jan 2026) &mdash;
-                    the first application of this approach to PD gait monitoring data.
+                    A clinician asks a question in plain English; the agent writes Python code to analyse wearable sensor gait data,
+                    executes it in a sandbox, and returns a clinically contextualised answer with full reasoning trace. Built on the
+                    PHIA pattern (Nature Communications, Jan 2026) &mdash; the first application of this approach to PD gait monitoring data.
                 </p>
-                <ul class="highlights">
-                    <li>ReAct agent loop: Thought &rarr; Action (code execution or RAG retrieval) &rarr; Observation &rarr; repeat until final answer; 1&ndash;3 iterations per question</li>
-                    <li>Two tools: sandboxed Python execution (pandas on gait DataFrame) and MongoDB Atlas vector search over 17 clinical knowledge chunks</li>
-                    <li>Clinical knowledge base: MDS-UPDRS scoring, H&amp;Y staging, gait thresholds (Hausdorff, Bloem), levodopa pharmacokinetics, freezing-of-gait management</li>
-                    <li>Synthetic dataset: 3 patients (moderate PD, mild PD, healthy control), 19,183 steps over 3 weeks with medication states and freezing episodes</li>
-                    <li>Full reasoning trace: every thought, code block, observation, and RAG retrieval visible in expandable UI</li>
-                </ul>
+                <p class="desc">
+                    Custom ReAct loop (no LangChain), MongoDB Atlas vector search over 17 clinical knowledge chunks, and synthetic
+                    data modelling realistic PD subtypes with medication wearing-off and freezing episodes. Entire stack runs on
+                    free-tier services at zero cost.
+                </p>
                 <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; Gemini 2.5 Flash &middot; MongoDB Atlas &middot; sentence-transformers &middot; Pandas &middot; NumPy</p>
                 <a class="demo-link" href="https://pd-gait-agent-815016179860.europe-west1.run.app/">Live Demo</a>
                 <a class="demo-link" href="https://github.com/emantzoo/pd-gait-agent">GitHub</a>
@@ -471,17 +519,14 @@
                     </div>
                 </div>
                 <p class="desc">
-                    Interactive dashboard assessing digital maturity of Greek businesses. Takes raw survey data (Likert scales, checklists,
-                    ratings across 11 question blocks) and produces full diagnostic reports: SWOT classification, priority matrices,
-                    gap analysis, implementation roadmaps, risk exposure, and bottleneck identification.
+                    Interactive diagnostic dashboard that takes raw survey data from Greek businesses (Likert scales, checklists, ratings
+                    across 11 question blocks) and produces SWOT classifications, priority matrices, gap analyses, and implementation
+                    roadmaps. Three data-entry paths &mdash; Greek questionnaire, Excel upload, or AI conversational assessment.
                 </p>
-                <ul class="highlights">
-                    <li>Three data-entry methods: Greek questionnaire, Excel template, AI conversational assessment</li>
-                    <li>15 reactive computations: SWOT, priority, gap, roadmap, heatmap, bottleneck analysis</li>
-                    <li>Three recommendation engines: rule-based, dynamic dimension-level, priority-based</li>
-                    <li>Six interactive charts with click-to-drill-down modal dialogs</li>
-                    <li>AI narratives per tab via Cerebras LLM with tab-specific prompt builders</li>
-                </ul>
+                <p class="desc">
+                    15 reactive computations, three independent recommendation engines (rule-based, dynamic, priority-based),
+                    six interactive drill-down charts, and per-tab AI narrative generation via Cerebras LLM.
+                </p>
                 <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; ggplot2 &middot; plotly &middot; ggiraph &middot; DT &middot; Cerebras API &middot; Docker</p>
                 <a class="demo-link" href="https://dma-dashboard-176552537835.europe-west1.run.app/">Live Demo</a>
                 <a class="demo-link" href="https://github.com/emantzoo/dma-dashboard">GitHub</a>
@@ -524,17 +569,15 @@
                     </div>
                 </div>
                 <p class="desc">
-                    Adaptive digital maturity assessment for retail SMEs replacing static questionnaires with a dynamic, evidence-based
-                    diagnostic engine. Guides business owners through a 7-stage flow &mdash; from business classification and symptom triage
-                    to constraint-aware solution matching &mdash; producing tailored outputs for SMEs, advisors, and analysts.
+                    Replaces static questionnaires with a dynamic diagnostic engine for retail SMEs. Routes 44 questions adaptively
+                    toward the highest-scoring unconfirmed pain cluster using a 7-cluster Bayesian-inspired scoring model with
+                    sector priors &mdash; assessments complete in under 5 minutes.
                 </p>
-                <ul class="highlights">
-                    <li>44 questions across 14 blocks, adaptively routed toward highest-scoring unconfirmed pain cluster</li>
-                    <li>7-cluster Bayesian-inspired scoring model with sector priors and symptom card boosts</li>
-                    <li>19 solutions filtered by hard constraints + composite scoring</li>
-                    <li>20-node digital twin process map with R-expression status rules</li>
-                    <li>Three output audiences: SME (action cards), Advisor (evidence tables), Analyst (SWOT/radar/roadmap)</li>
-                </ul>
+                <p class="desc">
+                    19 solutions filtered by hard constraints (budget, time, support) before composite scoring, a 20-node digital twin
+                    process map with R-expression status rules, and three audience-specific outputs: plain language for SME owners,
+                    evidence tables for advisors, and SWOT/radar/roadmap for analysts.
+                </p>
                 <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; ggplot2 &middot; plotly &middot; fmsb &middot; gt &middot; pagedown &middot; Docker &middot; Cloud Run</p>
                 <a class="demo-link" href="https://smart-dma-176552537835.europe-west1.run.app/">Live Demo</a>
                 <a class="demo-link" href="https://github.com/emantzoo/Smart-DMA">GitHub</a>
@@ -569,62 +612,6 @@
                 </details>
             </div>
 
-            <!-- Project 5: Policy Intelligence -->
-            <div class="project" data-tags="policy python ai cloud">
-                <div class="project-header">
-                    <h3>Policy Intelligence Platform &mdash; Django + HTMX</h3>
-                    <div class="tags">
-                        <span class="tag tag-django">Django</span>
-                        <span class="tag tag-python">Python</span>
-                        <span class="tag tag-ai">AI/LLM</span>
-                        <span class="tag tag-cloud">Cloud</span>
-                    </div>
-                </div>
-                <p class="desc">
-                    Policy analytics platform for monitoring the EU Council Recommendation on Fair Transition across 27 member states.
-                    Ingests 1,000+ policy measures from MongoDB, provides 14 interactive Plotly visualisations with 11 filter dimensions,
-                    and layers AI-powered analysis &mdash; chart narratives, strategic intelligence briefs, gap analysis, and RAG-based semantic policy search.
-                </p>
-                <ul class="highlights">
-                    <li>14+ Plotly charts with 11 simultaneous filter dimensions</li>
-                    <li>RAG pipeline: query embedding, MongoDB vector search, top-5 retrieval, LLM answer with citations</li>
-                    <li>6-section strategic intelligence framework with executive synthesis</li>
-                    <li>Filter-scoped AI context: every prompt includes active filter state</li>
-                    <li>Measure deduplication via linkage collection at query time</li>
-                </ul>
-                <p class="stack"><strong>Stack:</strong> Python &middot; Django &middot; HTMX &middot; MongoDB &middot; Plotly &middot; Tailwind CSS &middot; Cerebras API &middot; Cloud Run</p>
-                <a class="demo-link" href="https://policy-dashboard-176552537835.europe-west1.run.app/">Live Demo</a>
-                <a class="demo-link" href="https://github.com/emantzoo/policy-board">GitHub</a>
-                <details>
-                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
-                    <div class="detail-section">
-                        <h4>Technical Highlights</h4>
-                        <table>
-                            <tr><th>Layer</th><th>Technology</th></tr>
-                            <tr><td>Frontend</td><td>Django 5 + HTMX (partial page loads, no SPA), Tailwind CSS, responsive grid layout</td></tr>
-                            <tr><td>Visualisation</td><td>14+ Plotly chart types (choropleth, bar, pie, heatmap, stacked bar), responsive sizing</td></tr>
-                            <tr><td>Data pipeline</td><td>MongoDB aggregation pipelines with allowDiskUse, QueryBuilder mapping 11 filter dimensions to $match/$unwind/$regex stages</td></tr>
-                            <tr><td>AI integration</td><td>8 generation functions: chart narratives, document analysis, in-depth analysis (5 focus modes), Q&amp;A, strategic analysis (6 sections + synthesis), batch/country summaries, gap analysis</td></tr>
-                            <tr><td>RAG pipeline</td><td>Query embedding, MongoDB $vectorSearch, top-5 retrieval, metadata enrichment, LLM answer with source citations</td></tr>
-                            <tr><td>Prompt engineering</td><td>8 specialised system personas, filter-aware context injection, &lt;think&gt; tag stripping for reasoning models</td></tr>
-                            <tr><td>Caching</td><td>Django LocMem cache with namespace keys (ai:{type}:{md5}), filter-aware invalidation, 1-hour TTL</td></tr>
-                            <tr><td>Deployment</td><td>Docker (python:3.12-slim), gunicorn (2 workers + 4 threads), Cloud Run (512MB, auto-scale 0-2), MongoDB Atlas</td></tr>
-                            <tr><td>Seeding</td><td>seed_mongo.py generates 300 docs / 1,050 measures / 80 linkage groups across 14 EU countries</td></tr>
-                        </table>
-                    </div>
-                    <div class="detail-section">
-                        <h4>Architecture Decisions</h4>
-                        <ul class="arch-list">
-                            <li><strong>Filter-scoped AI context</strong> &mdash; every AI prompt includes the active filter state as a human-readable preamble, so LLM responses reflect the user's current view</li>
-                            <li><strong>Deduplication at query time</strong> &mdash; linkage collection maps duplicates to canonical IDs. Matched canonicals expand to include all duplicates; when displaying, duplicates are collapsed</li>
-                            <li><strong>Document-grounded deep analysis</strong> &mdash; in-depth analysis uses the full parsed document text (up to 25K chars) rather than just metadata, enabling the LLM to cite specific provisions</li>
-                            <li><strong>Graceful AI degradation</strong> &mdash; when no API key is configured, all AI endpoints return informative placeholders, keeping the dashboard fully functional for data exploration</li>
-                            <li><strong>Slim Docker image</strong> &mdash; copies only the 6 modules Django actually imports, keeping the image under 300MB</li>
-                        </ul>
-                    </div>
-                </details>
-            </div>
-
             <!-- Project 6: Power BI Code-First -->
             <div class="project" data-tags="business powerbi python">
                 <div class="project-header">
@@ -635,17 +622,14 @@
                     </div>
                 </div>
                 <p class="desc">
-                    4 production-ready Power BI dashboards built entirely from code using a code-first workflow.
-                    MCP Server handles data loading, relationships, and DAX measures. Python scripts generate
-                    all visual pages as PBIR JSON files. Zero manual UI work &mdash; reproducible, version-controllable, scriptable.
+                    Four production-ready Power BI dashboards (E-Commerce, Hospital, HR, Supply Chain) built entirely without
+                    drag-and-drop. MCP Server handles data loading, relationships, and DAX measures; Python scripts generate
+                    all visual pages as PBIR JSON files &mdash; fully reproducible and version-controllable.
                 </p>
-                <ul class="highlights">
-                    <li>E-Commerce: 4 pages, 27 DAX measures, SUMX with RELATED, SAMEPERIODLASTYEAR</li>
-                    <li>Hospital: 4 pages, 32 measures, EARLIER self-join for 30-day readmissions</li>
-                    <li>HR: 4 pages, 34 measures, LASTDATE snapshot pattern, POWER annualized rates</li>
-                    <li>Supply Chain: 5 pages, 42 measures, 3-fact model, 8x USERELATIONSHIP</li>
-                    <li>All visuals generated as JSON (PBIR format) &mdash; no drag-and-drop</li>
-                </ul>
+                <p class="desc">
+                    Demonstrates advanced DAX patterns: LASTDATE snapshot measures, EARLIER self-joins for 30-day readmissions,
+                    8&times; USERELATIONSHIP for multi-fact models, and POWER-based annualised attrition rates. Up to 42 measures per dashboard.
+                </p>
                 <p class="stack"><strong>Stack:</strong> Power BI &middot; DAX &middot; Python &middot; PBIR/JSON &middot; MCP Server</p>
                 <a class="demo-link" href="https://github.com/emantzoo/powerbi-code-first-dashboards">GitHub Repo</a>
                 <details>
@@ -691,18 +675,15 @@
                     </div>
                 </div>
                 <p class="desc">
-                    A comprehensive statistical analysis of a simulated greenhouse experiment evaluating herbicide treatments
-                    against a resistant weed species. Demonstrates end-to-end biostatistical workflow &mdash; from experimental
-                    design (RCBD with repeated measures) through mixed models, dose-response curves, and multivariate analysis,
-                    all in a single reproducible R Markdown report.
+                    End-to-end biostatistical analysis of a simulated greenhouse experiment (RCBD with repeated measures),
+                    demonstrating the full workflow from experimental design through mixed models, dose-response curves,
+                    and multivariate analysis in a single reproducible R Markdown report.
                 </p>
-                <ul class="highlights">
-                    <li>Mixed ANOVA with repeated measures, Dunnett&rsquo;s test, Abbott&rsquo;s efficacy, effect sizes (Cohen&rsquo;s d + partial &eta;&sup2;)</li>
-                    <li>Negative binomial GLMM for count data with DHARMa simulation-based diagnostics</li>
-                    <li>MANOVA, PCA biplot with 95% confidence ellipses, PERMANOVA robustness check</li>
-                    <li>4-parameter log-logistic dose-response model (drc), bootstrap CIs for ED50, model comparison (LL.4 vs Weibull)</li>
-                    <li>Publication-quality output: gtsummary Table 1, raincloud plots, interactive DT tables, correlation heatmaps</li>
-                </ul>
+                <p class="desc">
+                    Covers mixed ANOVA with Dunnett&rsquo;s test and effect sizes, negative binomial GLMM with simulation-based
+                    diagnostics, 4-parameter log-logistic dose-response modelling with bootstrap CIs, and MANOVA/PCA/PERMANOVA.
+                    Publication-quality output with gtsummary tables and raincloud plots.
+                </p>
                 <p class="stack"><strong>Stack:</strong> R &middot; R Markdown &middot; afex &middot; emmeans &middot; glmmTMB &middot; drc &middot; boot &middot; FactoMineR &middot; vegan &middot; DHARMa &middot; ggdist &middot; gtsummary &middot; bookdown</p>
                 <a class="demo-link" href="https://emantzoo.github.io/palmer-amaranth-analysis/">Live Report</a>
                 <a class="demo-link" href="https://github.com/emantzoo/palmer-amaranth-analysis">GitHub</a>
@@ -745,17 +726,14 @@
                     </div>
                 </div>
                 <p class="desc">
-                    A tutorial R package with a pkgdown website covering five classical experimental designs
-                    used in agricultural research. Each design includes a built-in dataset, a detailed vignette
-                    with full analysis pipeline, and a helper function for assumption checking.
+                    Tutorial R package with a pkgdown website covering five classical experimental designs used in agricultural
+                    research (CRD, RCBD, Latin Square, Factorial, Split-Plot). Each design includes a built-in dataset, a detailed
+                    vignette with full analysis pipeline, and a helper function for assumption checking.
                 </p>
-                <ul class="highlights">
-                    <li>5 designs: CRD, RCBD, Latin Square, Factorial, Split-Plot</li>
-                    <li>5 built-in datasets with roxygen2 documentation</li>
-                    <li>Each vignette: EDA, model fitting, assumption checks, Tukey HSD, emmeans contrasts</li>
-                    <li>Decision flowchart: &ldquo;Which design should I use?&rdquo;</li>
-                    <li>R CMD check passes with 0 errors, 0 warnings, 0 notes</li>
-                </ul>
+                <p class="desc">
+                    Every vignette walks through EDA, model fitting, assumption checks, Tukey HSD, and emmeans contrasts.
+                    Includes a decision flowchart for design selection. R CMD check passes with 0 errors, 0 warnings, 0 notes.
+                </p>
                 <p class="stack"><strong>Stack:</strong> R &middot; ggplot2 &middot; emmeans &middot; lmerTest &middot; pkgdown &middot; GitHub Actions</p>
                 <a class="demo-link" href="https://emantzoo.github.io/agrideshr/">pkgdown Site</a>
                 &nbsp;&middot;&nbsp;
@@ -797,17 +775,15 @@
                     </div>
                 </div>
                 <p class="desc">
-                    Two educational games built with MakeCode Python for Minecraft Education Edition that make
-                    classification, search strategies, and optimization tangible through gameplay. An AI agent
-                    sorts animals into pens using two classification strategies, and navigates a procedurally
-                    generated reward grid using four search algorithms.
+                    Two educational games for Minecraft Education Edition that make classification and search algorithms tangible
+                    through gameplay. An AI agent sorts animals using fine-grained vs coarse classification strategies, then navigates
+                    a procedurally generated reward grid comparing Random Walk, Greedy, and memory-augmented search &mdash; each strategy
+                    adding one improvement, making algorithmic thinking incremental.
                 </p>
-                <ul class="highlights">
-                    <li>Game 1: Animal sorting with fine-grained (5 pens) vs coarse (2 categories) classification, 70/30 weighted spawn distribution</li>
-                    <li>Game 2: Gold Hunt with 4 search strategies &mdash; Random Walk, Greedy, Greedy + No Backtrack (XOR trick), Greedy + Avoid Visited</li>
-                    <li>Fisher-Yates shuffle adapted for MakeCode constraints, backtracking prevention via bitwise XOR on direction indices</li>
-                    <li>Interactive browser demo recreates both games with React &mdash; no Minecraft license needed</li>
-                </ul>
+                <p class="desc">
+                    Includes a self-contained React browser demo (no Minecraft license needed), Fisher-Yates shuffle adapted
+                    for MakeCode constraints, and XOR-based backtrack prevention.
+                </p>
                 <p class="stack"><strong>Stack:</strong> MakeCode Python &middot; Minecraft Education Edition &middot; React (browser demo)</p>
                 <a class="demo-link" href="https://emantzoo.github.io/minecraft-education-games/">Live Demo</a>
                 <a class="demo-link" href="https://github.com/emantzoo/minecraft-education-games">GitHub</a>
@@ -921,6 +897,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('.filter-pill');
     const projects = document.querySelectorAll('.project');
+    const tiers = document.querySelectorAll('.tier-title');
     buttons.forEach(btn => {
         btn.addEventListener('click', function() {
             buttons.forEach(b => b.classList.remove('active'));
@@ -933,6 +910,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     p.classList.add('hidden');
                 }
+            });
+            tiers.forEach(title => {
+                const grid = title.nextElementSibling;
+                const hasVisible = grid && grid.querySelector('.project:not(.hidden)');
+                title.style.display = hasVisible ? '' : 'none';
+                if (grid) grid.style.display = hasVisible ? '' : 'none';
             });
         });
     });
