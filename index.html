@@ -307,6 +307,7 @@
                 </ul>
                 <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; plotly &middot; ggplot2 &middot; SQLite &middot; Docker &middot; Google Cloud Run</p>
                 <a class="demo-link" href="https://iap-app-176552537835.europe-west1.run.app/">Live Demo</a>
+                <a class="demo-link" href="https://github.com/emantzoo/IAP_method">GitHub</a>
                 <details>
                     <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
                     <div class="detail-section">
@@ -339,29 +340,33 @@
             </div>
 
             <!-- Project: DataScope -->
-            <div class="project" data-tags="stats-ml r">
+            <div class="project" data-tags="stats-ml r ai">
                 <div class="project-header">
                     <h3>DataScope &mdash; Interactive Data Analysis Platform</h3>
                     <div class="tags">
                         <span class="tag tag-r">R/Shiny</span>
-                        <span class="tag tag-shiny">bslib</span>
-                        <span class="tag tag-ai">ML/Caret</span>
+                        <span class="tag tag-ai">AI/Gemini</span>
+                        <span class="tag tag-shiny">ML/Caret</span>
+                        <span class="tag tag-stats">ggstatsplot</span>
                     </div>
                 </div>
                 <p class="desc">
-                    A generic, portfolio-ready Shiny application for end-to-end data analysis. Upload any CSV/Excel dataset
-                    and explore it through descriptive statistics, statistical tests, machine learning modeling, model
-                    interpretability (DALEX, LIME, SHAP), interactive visualizations, network analysis, and automated report generation
-                    &mdash; all in a single modular application with 12+ modules and a comprehensive test suite.
+                    Feature-rich R/Shiny platform for exploratory data analysis, statistical testing, machine learning, model interpretability,
+                    and AI-assisted analysis. Upload any CSV (or use built-in datasets), then explore, analyze, model, and report &mdash; all without writing code.
+                    Includes a two-layer AI Assistant: a rule-based engine for instant recommendations (no API key needed) and an optional
+                    Gemini-powered LLM for deep natural-language analysis and cross-cutting results interpretation.
+                    40+ R packages unified in a modular architecture with comprehensive test coverage.
                 </p>
                 <ul class="highlights">
-                    <li>7 ML algorithms (lm, RF, SVM, XGBoost, kNN, nnet) with auto-scaling, cross-validation, and one-click training</li>
-                    <li>Full model interpretability: variable importance, PDP, LIME, Break Down, interaction plots, Johnson-Neyman, diagnostics</li>
-                    <li>Statistical tests: t-test, ANOVA, chi-square, correlation &mdash; with effect sizes and assumption checks</li>
-                    <li>Interactive visualizations via ggplot2, plotly, and esquisse; network analysis with igraph and networkD3</li>
-                    <li>Reactable tables with color-coded metrics, pivot tables, and downloadable PDF/HTML reports</li>
+                    <li>AI Assistant: rule-based engine profiles data and recommends tests/models/visualizations instantly; optional Gemini LLM (free tier) for goal-driven analysis and results interpretation across all modules</li>
+                    <li>9 ML algorithms (Linear/Logistic Regression, Elastic Net, Decision Tree, RF, GBM, XGBoost, SVM, KNN, Neural Net) with preprocessing, CV tuning, ROC curves, confusion matrices, and tree visualization</li>
+                    <li>Full interpretability: DALEX permutation importance, PDP + ALE + ICE profiles, LIME, Break Down, SHAP, interaction plots, Johnson-Neyman, standardized coefficients, publication tables (modelsummary + sjPlot)</li>
+                    <li>Statistical tests with parametric/non-parametric toggle, auto post-hoc comparisons (Tukey, Dunn, Games-Howell), resampling inference (permutation + bootstrap CIs via infer), and assumption checks</li>
+                    <li>ggstatsplot publication-ready plots with embedded APA-style results; GWalkR Tableau-like drag-and-drop; esquisse ggplot2 builder; correlation networks and Sankey diagrams</li>
+                    <li>PCA/FAMD (FactoMineR), k-means and hierarchical clustering with Hopkins statistic, elbow/silhouette/gap analysis, and cluster profiling</li>
                 </ul>
-                <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; caret &middot; DALEX &middot; lime &middot; ingredients &middot; plotly &middot; ggplot2 &middot; reactable &middot; igraph &middot; networkD3 &middot; testthat</p>
+                <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; caret &middot; DALEX &middot; lime &middot; ingredients &middot; Gemini API &middot; ggstatsplot &middot; plotly &middot; ggplot2 &middot; GWalkR &middot; esquisse &middot; FactoMineR &middot; reactable &middot; igraph &middot; networkD3 &middot; testthat</p>
+                <a class="demo-link" href="https://datascope-176552537835.europe-west1.run.app/">Live Demo</a>
                 <a class="demo-link" href="https://github.com/emantzoo/DataScope">GitHub</a>
                 <details>
                     <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
@@ -369,26 +374,32 @@
                         <h4>Technical Highlights</h4>
                         <table>
                             <tr><th>Layer</th><th>Technology</th></tr>
-                            <tr><td>Frontend</td><td>bslib (Bootstrap 5, Flatly theme), dark header, responsive sidebar layouts, shinycssloaders</td></tr>
-                            <tr><td>Data overview</td><td>Reactable tables with type icons, color-coded missing %, skimr/dlookr diagnostics, SmartEDA profiles</td></tr>
-                            <tr><td>ML pipeline</td><td>caret::train with 7 methods, auto preProcess (center+scale for SVM/kNN/nnet), CV folds, train/test split</td></tr>
-                            <tr><td>Interpretability</td><td>DALEX explainer &rarr; variable importance, PDP (ingredients), LIME (lime), Break Down (iBreakDown), interactions (interactions pkg)</td></tr>
-                            <tr><td>Diagnostics</td><td>performance::check_model, parameters::model_parameters, broom::tidy, report::report &mdash; with reactable summary tables</td></tr>
-                            <tr><td>Statistical tests</td><td>rstatix + infer: t-test, Wilcoxon, ANOVA, Kruskal-Wallis, chi-square, Pearson/Spearman correlation</td></tr>
-                            <tr><td>Visualisation</td><td>ggplot2, plotly (scatter, histogram, boxplot), esquisse (drag-and-drop), ggpubr (publication-quality)</td></tr>
-                            <tr><td>Network analysis</td><td>igraph (correlation &amp; co-occurrence networks), networkD3 (interactive force-directed), ggraph layouts</td></tr>
-                            <tr><td>Reporting</td><td>R Markdown PDF/HTML generation with saved plots &amp; ML results</td></tr>
-                            <tr><td>Testing</td><td>testthat + testServer: unit tests, module tests, E2E ML+interpretability tests across multiple datasets</td></tr>
+                            <tr><td>Framework</td><td>Shiny, bslib (Bootstrap 5, Flatly theme), responsive sidebar layouts, shinycssloaders</td></tr>
+                            <tr><td>Tables</td><td>reactable (color-coded p-values, inline bar charts, significance stars), DT</td></tr>
+                            <tr><td>Visualization</td><td>ggplot2, plotly, ggpubr, ggstatsplot (APA-style publication plots), esquisse (code export), GWalkR (Tableau-like), corrplot, VIM</td></tr>
+                            <tr><td>Networks</td><td>ggraph, igraph (correlation networks), networkD3 (Sankey flow diagrams)</td></tr>
+                            <tr><td>Statistical testing</td><td>rstatix, infer (permutation tests + bootstrap CIs), broom &mdash; auto-selected tests with post-hoc comparisons and assumption checks</td></tr>
+                            <tr><td>ML pipeline</td><td>caret with 9 model types, preprocessing (imputation, NZV, correlated feature filtering, Box-Cox/Yeo-Johnson, PCA), k-fold/repeated CV/LOOCV/bootstrap, auto and custom tuning grids</td></tr>
+                            <tr><td>Interpretability</td><td>DALEX permutation importance, PDP + ALE + ICE (ingredients), LIME, Break Down, SHAP, interactions + Johnson-Neyman, easystats diagnostics, sjPlot + modelsummary</td></tr>
+                            <tr><td>Auto-EDA</td><td>skimr, dlookr, SmartEDA, DataExplorer &mdash; target analysis with effect sizes (Cohen&rsquo;s d, eta-squared, Cram&eacute;r&rsquo;s V)</td></tr>
+                            <tr><td>Classification</td><td>pROC (ROC curves), confusion matrix metrics, per-class performance, rpart.plot (tree visualization)</td></tr>
+                            <tr><td>AI Assistant</td><td>Rule-based engine (pure R, no API) + Gemini API (free tier) via httr/jsonlite &mdash; guided analysis, auto-EDA pipeline, cross-cutting results interpretation</td></tr>
+                            <tr><td>PCA &amp; Clustering</td><td>FactoMineR + factoextra (PCA, FAMD, biplots, cos2 maps), k-means + hierarchical, Hopkins statistic, elbow/silhouette/gap analysis</td></tr>
+                            <tr><td>Reporting</td><td>R Markdown HTML reports with saved analyses, plots, narratives, and model performance tables</td></tr>
+                            <tr><td>Testing</td><td>testthat + testServer: unit tests, AI rules engine tests, module tests, E2E ML+interpretability tests, shinytest2 integration tests</td></tr>
                         </table>
                     </div>
                     <div class="detail-section">
                         <h4>Architecture Decisions</h4>
                         <ul class="arch-list">
-                            <li><strong>Modular Shiny design</strong> &mdash; 12+ independent modules (data upload, overview, stats, ML, interpretability, viz, network, pivot, predictions, report), each with isolated UI/server pairs</li>
-                            <li><strong>Shared reactive state</strong> &mdash; a single reactiveValues object flows between modules: trained model, predictions, test data, and target variable are shared across ML, interpretability, and predictions modules</li>
-                            <li><strong>Auto-scaling for sensitive models</strong> &mdash; SVM, kNN, and nnet automatically get center+scale preprocessing via caret&rsquo;s preProcess, preventing convergence issues without user intervention</li>
-                            <li><strong>DALEX as the interpretability backbone</strong> &mdash; a single DALEX explainer object powers variable importance, PDP, Break Down, and model performance &mdash; consistent API regardless of the underlying model type</li>
-                            <li><strong>Defensive prediction handling</strong> &mdash; NA-safe metric computation filters to complete cases before calculating RMSE/MAE/R&sup2;, with explicit reporting of dropped observations</li>
+                            <li><strong>Two-layer AI intelligence</strong> &mdash; rule-based engine works offline and instantly; Gemini LLM layer (free tier) adds depth when available. The app never depends on an API key for core functionality</li>
+                            <li><strong>Modular Shiny design</strong> &mdash; 13+ independent modules (AI assistant, data upload, overview, target analysis, statsplots, stats, ML, interpretability, viz, network, pivot, PCA/clustering, predictions, report), each with isolated UI/server pairs</li>
+                            <li><strong>Shared reactive state</strong> &mdash; a single reactiveValues object flows between modules; the AI Assistant reads from shared state to collect results across all modules and provide cross-cutting interpretation</li>
+                            <li><strong>Parametric/non-parametric toggle</strong> &mdash; every statistical test has a non-parametric alternative (Wilcoxon, Kruskal-Wallis, Dunn&rsquo;s, Spearman) with automatic effect size switching</li>
+                            <li><strong>caret as the ML backbone</strong> &mdash; unified interface across 9 model types with full preprocessing pipeline (imputation, NZV, correlation filter, transforms, PCA) built on caret&rsquo;s preProcess</li>
+                            <li><strong>DALEX + ingredients for interpretability</strong> &mdash; model-agnostic explanations (importance, PDP, Break Down, LIME) that work identically regardless of the underlying model type</li>
+                            <li><strong>ggstatsplot for publication output</strong> &mdash; embeds test results, effect sizes, CIs, and Bayesian analysis directly in plot subtitles, following APA reporting standards</li>
+                            <li><strong>FactoMineR + factoextra for PCA/clustering</strong> &mdash; richer output than base R prcomp(), with automatic cos2/contribution extraction, FAMD for mixed data, and polished ggplot2 visualizations</li>
                         </ul>
                     </div>
                 </details>
@@ -418,6 +429,7 @@
                 </ul>
                 <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; ggplot2 &middot; plotly &middot; ggiraph &middot; DT &middot; Cerebras API &middot; Docker</p>
                 <a class="demo-link" href="https://dma-dashboard-176552537835.europe-west1.run.app/">Live Demo</a>
+                <a class="demo-link" href="https://github.com/emantzoo/dma-dashboard">GitHub</a>
                 <details>
                     <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
                     <div class="detail-section">
@@ -470,6 +482,7 @@
                 </ul>
                 <p class="stack"><strong>Stack:</strong> R &middot; Shiny &middot; bslib &middot; ggplot2 &middot; plotly &middot; fmsb &middot; gt &middot; pagedown &middot; Docker &middot; Cloud Run</p>
                 <a class="demo-link" href="https://smart-dma-176552537835.europe-west1.run.app/">Live Demo</a>
+                <a class="demo-link" href="https://github.com/emantzoo/Smart-DMA">GitHub</a>
                 <details>
                     <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
                     <div class="detail-section">
@@ -526,6 +539,7 @@
                 </ul>
                 <p class="stack"><strong>Stack:</strong> Python &middot; Django &middot; HTMX &middot; MongoDB &middot; Plotly &middot; Tailwind CSS &middot; Cerebras API &middot; Cloud Run</p>
                 <a class="demo-link" href="https://policy-dashboard-176552537835.europe-west1.run.app/">Live Demo</a>
+                <a class="demo-link" href="https://github.com/emantzoo/policy-board">GitHub</a>
                 <details>
                     <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
                     <div class="detail-section">
