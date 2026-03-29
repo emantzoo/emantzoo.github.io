@@ -160,19 +160,19 @@
     <section class="section" id="projects">
         <h2 class="section-title">Projects</h2>
         <div class="filter-pills">
-            <button class="filter-pill active" data-filter="all">All<span class="count">(12)</span></button>
+            <button class="filter-pill active" data-filter="all">All<span class="count">(13)</span></button>
         </div>
         <div class="filter-pills" style="margin-top: -16px;">
             <span style="color: var(--text-muted); font-size: 0.78em; padding: 6px 0; opacity: 0.6;">Scope</span>
             <button class="filter-pill" data-filter="stats-ml">Statistics &amp; ML<span class="count">(5)</span></button>
             <button class="filter-pill" data-filter="policy">Policy Analytics<span class="count">(2)</span></button>
-            <button class="filter-pill" data-filter="business">Business Intelligence<span class="count">(3)</span></button>
+            <button class="filter-pill" data-filter="business">Business Intelligence<span class="count">(4)</span></button>
             <button class="filter-pill" data-filter="science">Scientific Apps<span class="count">(4)</span></button>
             <button class="filter-pill" data-filter="educational">Educational<span class="count">(1)</span></button>
         </div>
         <div class="filter-pills" style="margin-top: -16px;">
             <span style="color: var(--text-muted); font-size: 0.78em; padding: 6px 0; opacity: 0.6;">Stack</span>
-            <button class="filter-pill" data-filter="r">R / Shiny<span class="count">(7)</span></button>
+            <button class="filter-pill" data-filter="r">R / Shiny<span class="count">(8)</span></button>
             <button class="filter-pill" data-filter="python">Python<span class="count">(5)</span></button>
             <button class="filter-pill" data-filter="ai">AI / LLM<span class="count">(5)</span></button>
             <button class="filter-pill" data-filter="cloud">Cloud<span class="count">(4)</span></button>
@@ -659,6 +659,73 @@
                             <li><strong>Semi-additive measures</strong> &mdash; inventory on-hand uses LASTDATE to get point-in-time values rather than summing across time</li>
                             <li><strong>Pre-aggregated fact table</strong> &mdash; FactShipmentRoutes stores route-level aggregates for performance, avoiding real-time joins</li>
                             <li><strong>Code-first PBIR workflow</strong> &mdash; visual.json files define each chart as JSON with type, position, size, and data bindings. Python generates all pages programmatically</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Project: excel2r -->
+            <div class="project" data-tags="business r">
+                <div class="project-header">
+                    <h3>excel2r &mdash; Excel-to-R Workbook Migration Package</h3>
+                    <div class="tags">
+                        <span class="tag tag-r">R Package</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    R package that migrates entire Excel workbooks to R in one step. Upload any multi-tab .xlsx &mdash; the package
+                    extracts every formula, translates 62 Excel functions to R equivalents, resolves cross-sheet references via
+                    topological sort, exports raw data as tidy CSVs, and produces a standalone R script that uses only base R with
+                    zero dependencies. Built-in verification compares every computed value against Excel&rsquo;s cached results
+                    before you commit to the migration.
+                </p>
+                <p class="desc">
+                    One-liner API: <code>excel2r::migrate("workbook.xlsx", "output/")</code> gives you a folder with an R script
+                    and CSV data files &mdash; edit the CSVs, rerun the script, get updated results, no Excel needed. Also includes
+                    named table detection, a 5-step interactive Shiny app (<code>excel2r::run_app()</code>), and smart CSV export
+                    that only includes cells actually referenced by formulas. Installable via
+                    <code>remotes::install_github("emantzoo/excel2r")</code>. 150+ tests, CI on 5 platforms, vignette included.
+                </p>
+                <p class="stack"><strong>Stack:</strong> R &middot; tidyxl &middot; openxlsx2 &middot; Shiny &middot; bslib</p>
+                <a class="demo-link" href="https://excel2r-815016179860.us-central1.run.app/">Live Demo</a>
+                <a class="demo-link" href="https://github.com/emantzoo/excel2r">GitHub</a>
+                <a class="demo-link" href="https://medium.com/@emantzo/i-built-an-r-package-that-migrates-excel-workbooks-to-r-formulas-data-and-all-44444466f322">Blog Post</a>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Package API</td><td>5 exported functions: migrate(), process(), verify(), supported_functions(), run_app()</td></tr>
+                            <tr><td>Frontend</td><td>Shiny + bslib (Bootstrap 5, Flatly theme), DT for interactive formula review, 5-tab workflow</td></tr>
+                            <tr><td>Parser</td><td>Custom balanced-parenthesis tokenizer, right-to-left safe replacement, string-literal awareness</td></tr>
+                            <tr><td>Reference transform</td><td>Cell refs &rarr; R syntax (D10 &rarr; Sheet$D[10]), cross-sheet, absolute $ refs, whole-column ranges</td></tr>
+                            <tr><td>Function registry</td><td>62 Excel functions mapped to R equivalents, per-function handler with error wrapping</td></tr>
+                            <tr><td>Dependency engine</td><td>Kahn&rsquo;s topological sort &mdash; two-level: sheet ordering first, then cell ordering within sheets</td></tr>
+                            <tr><td>CSV export</td><td>Tidy long-format (row, col, value) per sheet, filtered to only formula-referenced cells, blank input slots preserved</td></tr>
+                            <tr><td>Grid reconstruction</td><td>reconstruct_grid() helper embedded in generated script rebuilds positional data frame from tidy CSV</td></tr>
+                            <tr><td>Verification</td><td>Runs generated script in isolated environment, compares R values vs Excel cached results cell by cell, classifies matches/precision diffs/real mismatches</td></tr>
+                            <tr><td>Named tables</td><td>Auto-detection via openxlsx2::wb_get_tables(), header extraction, named data frame generation</td></tr>
+                            <tr><td>Conditional aggregation</td><td>Custom SUMIF/SUMIFS/COUNTIF/COUNTIFS/AVERAGEIF/AVERAGEIFS helpers embedded in output (no external dependency)</td></tr>
+                            <tr><td>Lookup helpers</td><td>VLOOKUP (exact + approximate match), HLOOKUP, INDEX, MATCH, XLOOKUP</td></tr>
+                            <tr><td>Script generation</td><td>Self-contained .R output &mdash; Excel mode (reads .xlsx) or CSV mode (base R only, zero dependencies)</td></tr>
+                            <tr><td>CI</td><td>GitHub Actions on macOS, Windows, Ubuntu (R release, devel, oldrel) &mdash; R CMD check with 0 errors, 0 warnings</td></tr>
+                            <tr><td>Testing</td><td>150+ tests: unit (parser, transforms, dependency ordering, CSV export, verification), integration, API tests</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Package with clean API over monolithic app</strong> &mdash; 5 exported functions wrap 30+ internal functions. Users get migrate() for the common case, process() + verify() for control. Shiny app is optional (Suggests, not Imports)</li>
+                            <li><strong>Tidy CSV over grid dump</strong> &mdash; raw data exported as row, col, value triples filtered to only formula-referenced cells. Compact, readable, editable. Labels and decoration that no formula touches are excluded</li>
+                            <li><strong>Dual output mode</strong> &mdash; Excel mode for quick use, CSV standalone for full migration. Same formula code in both; only the data loading section differs</li>
+                            <li><strong>Grid reconstruction from tidy data</strong> &mdash; reconstruct_grid() helper is embedded in the generated script so it runs with zero dependencies. Rebuilds the same positional data frame (Sheet$Col[Row]) that formulas expect</li>
+                            <li><strong>Verification decoupled from output mode</strong> &mdash; verify always runs the Excel-mode script (since formula code is identical in both modes), comparing R-computed values against Excel&rsquo;s cached results</li>
+                            <li><strong>Placeholder-based range extraction</strong> &mdash; ranges are replaced with &lt;RANGE_N&gt; tokens before single-cell transformation runs, preventing partial replacements (e.g., A1 inside A1:A10)</li>
+                            <li><strong>Bottom-up function transformation</strong> &mdash; innermost (smallest-span) function calls are transformed first, enabling correct handling of arbitrarily nested expressions like SUM(IF(A1&gt;0,B1,0))</li>
+                            <li><strong>Dual data frame strategy for named tables</strong> &mdash; positional frames for formula execution, named table frames with real column headers for downstream analysis</li>
+                            <li><strong>Smart CSV filtering</strong> &mdash; extract_referenced_cells() scans all formulas, expands ranges, tracks whole-column refs, and outputs only the cells that formulas actually need. Empty cells within referenced ranges are preserved as fillable input slots</li>
+                            <li><strong>Zero external dependencies in CSV mode</strong> &mdash; generated script uses only base R. No packages to install, runs anywhere</li>
                         </ul>
                     </div>
                 </details>
