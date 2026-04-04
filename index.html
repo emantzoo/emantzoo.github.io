@@ -117,14 +117,13 @@
         .filter-pill[data-filter="cloud"].active { background: rgba(248,81,73,0.15); border-color: var(--accent-red); color: var(--accent-red); }
         .filter-pill[data-filter="powerbi"].active { background: rgba(210,153,34,0.15); border-color: var(--accent-orange); color: var(--accent-orange); }
 
-        /* Other Work section */
-        .other-work { margin-top: 8px; }
-        .other-work-item { padding: 20px 0; border-bottom: 1px solid var(--border); }
-        .other-work-item:last-child { border-bottom: none; }
-        .other-work-item h4 { color: #fff; font-size: 1.05em; margin-bottom: 6px; }
-        .other-work-item p { color: var(--text-muted); font-size: 0.88em; margin-bottom: 8px; }
-        .other-work-item .stack { font-size: 0.8em; color: var(--text-muted); }
-        .other-work-item .stack strong { color: var(--text); }
+        /* Project Tabs */
+        .project-tabs { display: flex; gap: 0; margin-bottom: 28px; border-bottom: 2px solid var(--border); }
+        .project-tab { background: transparent; border: none; color: var(--text-muted); font-size: 0.95em; font-family: inherit; font-weight: 500; padding: 10px 24px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .project-tab:hover { color: var(--text); }
+        .project-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.8em; }
@@ -192,7 +191,12 @@
             <button class="filter-pill" data-filter="powerbi">Power BI<span class="count">(1)</span></button>
         </div>
 
-        <h3 class="tier-title">Featured</h3>
+        <div class="project-tabs">
+            <button class="project-tab active" data-tab="featured">Featured<span class="count" style="margin-left: 6px;">(12)</span></button>
+            <button class="project-tab" data-tab="other">Other Work<span class="count" style="margin-left: 6px;">(4)</span></button>
+        </div>
+
+        <div class="tab-content active" id="tab-featured">
         <div class="projects featured">
 
             <!-- 1. RegScope -->
@@ -839,38 +843,228 @@
             </div>
 
         </div>
+        </div>
 
-        <!-- Other Work (Tier 2) -->
-        <h3 class="tier-title" style="margin-top: 48px;">Other Work</h3>
-        <div class="other-work">
-            <div class="other-work-item">
-                <h4>SDC Methods &mdash; Statistical Disclosure Control</h4>
-                <p>Production anonymisation engine using four methods (k-Anonymity, Local Suppression, PRAM, Noise Addition) selected by a 40+ rule decision engine. Tested against 17 real-world Greek administrative datasets.</p>
-                <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; Pandas &middot; scikit-learn &middot; R/sdcMicro</p>
+        <div class="tab-content" id="tab-other">
+        <div class="projects other">
+
+            <!-- SDC Methods -->
+            <div class="project" data-tags="stats-ml python ai">
+                <div class="project-header">
+                    <h3>Statistical Disclosure Control &mdash; Streamlit App</h3>
+                    <div class="tags">
+                        <span class="tag tag-python">Python</span>
+                        <span class="tag tag-ai">AI/LLM</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    Production anonymization engine that protects individual-level datasets against re-identification using four methods
+                    (k-Anonymity, Local Suppression, PRAM, Noise Addition), selected automatically by a 40+ rule decision engine.
+                    Backward elimination risk analysis drives every downstream choice &mdash; from variable classification to per-QI protection parameters.
+                </p>
+                <p class="desc">
+                    Features an adaptive retry loop with escalation and cross-method fallbacks, a composite utility score
+                    (Pearson correlation, KL divergence, optional ML validation), and optional AI-powered column classification
+                    via Cerebras Qwen 235B. Tested against 17 real-world Greek administrative datasets.
+                </p>
+                <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; Pandas &middot; Plotly &middot; scikit-learn &middot; R/sdcMicro &middot; Cerebras API</p>
+                <a class="demo-link" href="https://sdcmethods.streamlit.app/">Live Demo</a>
                 <a class="demo-link" href="https://github.com/emantzoo/sdc_methods">GitHub</a>
                 <span class="private-note">Private repo &mdash; available on request</span>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>Streamlit, custom CSS, session state management</td></tr>
+                            <tr><td>Visualisation</td><td>Plotly (risk histograms, variable importance bars, before/after overlays)</td></tr>
+                            <tr><td>Risk engine</td><td>Custom pipeline: per-record ReID, backward elimination, structural risk, variable importance ranking</td></tr>
+                            <tr><td>Protection engine</td><td>4 methods, 40+ selection rules, dynamic pipeline builder, multi-phase retry with escalation + fallbacks</td></tr>
+                            <tr><td>Method selection</td><td>Rules engine (RC, CAT, LDIV, DATE, QR, LOW, DP, HR rule families), suppression-gated kANON</td></tr>
+                            <tr><td>Preprocessing</td><td>Type-aware routing (6 priority tiers), adaptive tier loop (light to very aggressive), risk-weighted per-QI cardinality limits</td></tr>
+                            <tr><td>Privacy metrics</td><td>k-anonymity, l-diversity (distinct + entropy), t-closeness (EMD/TVD), uniqueness rate, disclosure risk</td></tr>
+                            <tr><td>AI integration</td><td>Cerebras Qwen 235B for column classification and method recommendation (optional)</td></tr>
+                            <tr><td>R integration</td><td>sdcMicro for optimal local suppression and correlated noise (optional, Python fallback)</td></tr>
+                            <tr><td>Testing</td><td>pytest (unit + integration), 17-dataset test suite covering real-world Greek administrative data</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Backward elimination as the foundation</strong> &mdash; per-variable risk contribution drives everything downstream: QI classification confidence, preprocessing aggressiveness, per-QI protection parameters, LOCSUPR importance weights, and GENERALIZE ordering</li>
+                            <li><strong>Suppression-gated method selection</strong> &mdash; before selecting kANON at any k value, the engine pre-estimates suppression rate from equivalence class sizes. If estimated suppression exceeds 25%, it switches to LOCSUPR or PRAM directly</li>
+                            <li><strong>Type-aware preprocessing before generic generalization</strong> &mdash; dates, ages, geography, and skewed numerics each get domain-specific transformations before the generic cardinality-reduction loop runs, preserving domain structure</li>
+                            <li><strong>Sensitive-column-scoped utility</strong> &mdash; utility is measured primarily on sensitive (analysis) columns, not QIs. The composite score reflects what downstream analysts actually care about</li>
+                            <li><strong>Proportional low-cardinality QI guard</strong> &mdash; columns with very few unique values relative to dataset size are demoted from QI status via a two-tier ratio test, preventing structural methods from suppressing 90%+ of their values</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
-            <div class="other-work-item">
-                <h4>Policy Intelligence Platform</h4>
-                <p>Policy analytics platform tracking the EU Council Recommendation on Fair Transition across 27 member states. 14 interactive visualisations, 11 filter dimensions, RAG-based semantic policy search, and AI-powered gap analysis.</p>
-                <p class="stack"><strong>Stack:</strong> Python &middot; Django &middot; HTMX &middot; MongoDB &middot; Plotly &middot; Tailwind CSS &middot; Cloud Run</p>
+
+            <!-- Policy Intelligence Platform -->
+            <div class="project" data-tags="policy python ai cloud">
+                <div class="project-header">
+                    <h3>Policy Intelligence Platform &mdash; Django + HTMX</h3>
+                    <div class="tags">
+                        <span class="tag tag-django">Django</span>
+                        <span class="tag tag-python">Python</span>
+                        <span class="tag tag-ai">AI/LLM</span>
+                        <span class="tag tag-cloud">Cloud</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    Policy analytics platform tracking the EU Council Recommendation on Fair Transition across 27 member states.
+                    Ingests 1,000+ policy measures from MongoDB and provides 14 interactive visualisations with 11 simultaneous filter
+                    dimensions &mdash; every AI prompt receives the active filter state so responses always reflect what the user is looking at.
+                </p>
+                <p class="desc">
+                    Includes a RAG-based semantic policy search (MongoDB vector search, top-5 retrieval with citations),
+                    a 6-section strategic intelligence framework, and AI-powered gap analysis. Deployed on Cloud Run with
+                    graceful degradation &mdash; the dashboard stays fully functional even without an API key.
+                </p>
+                <p class="stack"><strong>Stack:</strong> Python &middot; Django &middot; HTMX &middot; MongoDB &middot; Plotly &middot; Tailwind CSS &middot; Cerebras API &middot; Cloud Run</p>
+                <a class="demo-link" href="https://policy-dashboard-176552537835.europe-west1.run.app/">Live Demo</a>
                 <a class="demo-link" href="https://github.com/emantzoo/policy-dashboard">GitHub</a>
                 <span class="private-note">Private repo &mdash; available on request</span>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>Django 5 + HTMX (partial page loads, no SPA), Tailwind CSS, responsive grid layout</td></tr>
+                            <tr><td>Visualisation</td><td>14+ Plotly chart types (choropleth, bar, pie, heatmap, stacked bar), responsive sizing</td></tr>
+                            <tr><td>Data pipeline</td><td>MongoDB aggregation pipelines with allowDiskUse, QueryBuilder mapping 11 filter dimensions to $match/$unwind/$regex stages</td></tr>
+                            <tr><td>AI integration</td><td>8 generation functions: chart narratives, document analysis, in-depth analysis (5 focus modes), Q&amp;A, strategic analysis (6 sections + synthesis), batch/country summaries, gap analysis</td></tr>
+                            <tr><td>RAG pipeline</td><td>Query embedding, MongoDB $vectorSearch, top-5 retrieval, metadata enrichment, LLM answer with source citations</td></tr>
+                            <tr><td>Prompt engineering</td><td>8 specialised system personas, filter-aware context injection, &lt;think&gt; tag stripping for reasoning models</td></tr>
+                            <tr><td>Caching</td><td>Django LocMem cache with namespace keys (ai:{type}:{md5}), filter-aware invalidation, 1-hour TTL</td></tr>
+                            <tr><td>Deployment</td><td>Docker (python:3.12-slim), gunicorn (2 workers + 4 threads), Cloud Run (512MB, auto-scale 0-2), MongoDB Atlas</td></tr>
+                            <tr><td>Seeding</td><td>seed_mongo.py generates 300 docs / 1,050 measures / 80 linkage groups across 14 EU countries</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>Filter-scoped AI context</strong> &mdash; every AI prompt includes the active filter state as a human-readable preamble, so LLM responses reflect the user's current view</li>
+                            <li><strong>Deduplication at query time</strong> &mdash; linkage collection maps duplicates to canonical IDs. Matched canonicals expand to include all duplicates; when displaying, duplicates are collapsed</li>
+                            <li><strong>Document-grounded deep analysis</strong> &mdash; in-depth analysis uses the full parsed document text (up to 25K chars) rather than just metadata, enabling the LLM to cite specific provisions</li>
+                            <li><strong>Graceful AI degradation</strong> &mdash; when no API key is configured, all AI endpoints return informative placeholders, keeping the dashboard fully functional for data exploration</li>
+                            <li><strong>Slim Docker image</strong> &mdash; copies only the 6 modules Django actually imports, keeping the image under 300MB</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
-            <div class="other-work-item">
-                <h4>PD Gait Analysis Agent</h4>
-                <p>LLM-powered clinical reasoning agent for Parkinson&rsquo;s Disease gait monitoring. Custom ReAct loop (no LangChain), MongoDB Atlas vector search, sandboxed code execution against wearable sensor data.</p>
-                <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; Gemini &middot; MongoDB Atlas &middot; sentence-transformers</p>
+
+            <!-- PD Gait Analysis Agent -->
+            <div class="project" data-tags="ai python science">
+                <div class="project-header">
+                    <h3>PD Gait Analysis Agent &mdash; LLM-Powered Clinical Reasoning</h3>
+                    <div class="tags">
+                        <span class="tag tag-python">Python</span>
+                        <span class="tag tag-ai">AI/Gemini</span>
+                        <span class="tag tag-cloud">RAG/MongoDB</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    A clinician asks a question in plain English; the agent writes Python code to analyse wearable sensor gait data,
+                    executes it in a sandbox, and returns a clinically contextualised answer with full reasoning trace. Built on the
+                    PHIA pattern (Nature Communications, Jan 2026) &mdash; the first application of this approach to PD gait monitoring data.
+                </p>
+                <p class="desc">
+                    Custom ReAct loop (no LangChain), MongoDB Atlas vector search over 17 clinical knowledge chunks, and synthetic
+                    data modelling realistic PD subtypes with medication wearing-off and freezing episodes. Entire stack runs on
+                    free-tier services at zero cost.
+                </p>
+                <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; Gemini 2.5 Flash &middot; MongoDB Atlas &middot; sentence-transformers &middot; Pandas &middot; NumPy</p>
+                <a class="demo-link" href="https://pd-gait-agent-815016179860.europe-west1.run.app/">Live Demo</a>
                 <a class="demo-link" href="https://github.com/emantzoo/pd-gait-agent">GitHub</a>
                 <span class="private-note">Private repo &mdash; available on request</span>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>LLM</td><td>Gemini 2.5 Flash (Google AI Studio, free tier)</td></tr>
+                            <tr><td>Agent framework</td><td>Custom ReAct loop (no LangChain dependency) &mdash; prompt parsing, tool dispatch, iteration control</td></tr>
+                            <tr><td>Code execution</td><td>Sandboxed Python with pre-loaded pandas DataFrame and patient profile dict</td></tr>
+                            <tr><td>RAG</td><td>MongoDB Atlas vector search, all-MiniLM-L6-v2 embeddings (sentence-transformers, runs locally), 17 clinical chunks</td></tr>
+                            <tr><td>System prompt</td><td>~35k chars assembled from role description, clinical knowledge, data schema, patient profile, 6 few-shot ReAct trajectories, tool descriptions</td></tr>
+                            <tr><td>Data</td><td>Synthetic gait data: step_length, stride_time, cadence, stride_variability, asymmetry_index, freezing_flag, medication_state, hours_since_dose</td></tr>
+                            <tr><td>Frontend</td><td>Streamlit with patient selector, context cards, example question buttons, expandable reasoning trace</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>PHIA-inspired ReAct pattern</strong> &mdash; agent reasons, acts (code or RAG), observes, and iterates; produces verifiable computation rather than hallucinated statistics</li>
+                            <li><strong>Custom agent loop over LangChain</strong> &mdash; full control over prompt assembly, tool dispatch, and iteration limits without framework overhead</li>
+                            <li><strong>Embedded clinical knowledge in system prompt + RAG</strong> &mdash; critical thresholds and scoring criteria are always available; RAG supplements with deeper guideline details on demand</li>
+                            <li><strong>Synthetic data with clinical realism</strong> &mdash; medication wearing-off patterns, progressive deterioration, freezing episodes, and PD subtype signatures allow meaningful agent evaluation without real patient data</li>
+                            <li><strong>Zero-cost stack</strong> &mdash; Gemini free tier, MongoDB Atlas M0, local embeddings; total running cost $0</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
-            <div class="other-work-item">
-                <h4>KBforge &mdash; Knowledge Base Builder for RAG</h4>
-                <p>No-code tool for domain experts to build production-ready knowledge bases for LLM retrieval. Configurable domain vocabularies, cosine similarity calibration, tag-preserving deduplication, coverage gap tracking. Fully local-first (ChromaDB + local embeddings).</p>
-                <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; ChromaDB &middot; sentence-transformers &middot; Pydantic &middot; Gemini API</p>
+
+            <!-- KBforge -->
+            <div class="project" data-tags="science ai python">
+                <div class="project-header">
+                    <h3>KBforge &mdash; Knowledge Base Builder for LLM Retrieval (RAG)</h3>
+                    <div class="tags">
+                        <span class="tag tag-python">Python</span>
+                        <span class="tag tag-ai">AI/Gemini</span>
+                    </div>
+                </div>
+                <p class="desc">
+                    Streamlit app that turns domain literature into production-ready knowledge bases for LLM retrieval-augmented
+                    generation (RAG). Ingest evidence from PDFs, PubMed, or structured JSON &mdash; every chunk is embedded, tagged
+                    with domain features, and stored in a ChromaDB vector index that any RAG pipeline can query with semantic search
+                    and metadata filtering. No coding required.
+                </p>
+                <p class="desc">
+                    Evolved from a hardcoded Alzheimer&rsquo;s research pipeline into a fully configurable tool where domain experts
+                    swap vocabularies, not code. Smart deduplication with cosine-similarity calibration merges near-duplicates without
+                    losing tags. Coverage gap tracking shows exactly where your KB is thin before your LLM starts hallucinating.
+                    Auto-generated extraction prompts let users paste papers into ChatGPT/Claude/NotebookLM and import the structured
+                    output directly.
+                </p>
+                <p class="stack"><strong>Stack:</strong> Python &middot; Streamlit &middot; ChromaDB &middot; sentence-transformers &middot; Pydantic &middot; Gemini API &middot; PyMuPDF &middot; PubMed E-utilities</p>
                 <a class="demo-link" href="https://github.com/emantzoo/kbforge">GitHub</a>
                 <span class="private-note">Private repo &mdash; available on request</span>
+                <details>
+                    <summary>Read more &mdash; Technical Details &amp; Architecture</summary>
+                    <div class="detail-section">
+                        <h4>Technical Highlights</h4>
+                        <table>
+                            <tr><th>Layer</th><th>Technology</th></tr>
+                            <tr><td>Frontend</td><td>Streamlit multipage app (Setup, Add Sources, Knowledge Base), session state management</td></tr>
+                            <tr><td>Data models</td><td>Pydantic v2: Chunk, SourceInfo, ProjectConfig &mdash; all pipeline modules receive ProjectConfig, no hardcoded vocabularies</td></tr>
+                            <tr><td>Ingestion</td><td>Three sources: JSON import with validation, PDF upload (PyMuPDF section detection + overlapping chunks), PubMed abstract search (NCBI E-utilities, free tier)</td></tr>
+                            <tr><td>LLM extraction</td><td>Gemini 2.5 Flash via google-genai: dynamic tagging prompts built from ProjectConfig.features, structured JSON output mode</td></tr>
+                            <tr><td>Prompt generation</td><td>Auto-generated extraction prompts (Prompt A/B) from project config &mdash; users paste papers into external LLMs and import the JSON output</td></tr>
+                            <tr><td>Embeddings</td><td>sentence-transformers (all-MiniLM-L6-v2 default, configurable), generic embedder accepts any model</td></tr>
+                            <tr><td>Vector store</td><td>ChromaDB with persistent SQLite backend, HNSW index, local &mdash; no cloud setup required</td></tr>
+                            <tr><td>Deduplication</td><td>Cosine similarity with tag merging (not discard). Calibrator shows similarity histogram, percentile stats, threshold impact table, top-N similar pairs</td></tr>
+                            <tr><td>Coverage</td><td>Per-feature chunk counts, coverage type breakdown, gap warnings, min_chunks_per_feature threshold</td></tr>
+                            <tr><td>Normalization</td><td>Fuzzy feature-name matching against ProjectConfig vocabulary (handles typos, case variations)</td></tr>
+                        </table>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Architecture Decisions</h4>
+                        <ul class="arch-list">
+                            <li><strong>ProjectConfig everywhere</strong> &mdash; every module receives a Pydantic ProjectConfig object; no hardcoded feature lists, coverage types, or model names. Switching domains means changing one config, not refactoring code</li>
+                            <li><strong>Calibration before deduplication</strong> &mdash; different embedding models produce different similarity distributions. The calibrator shows the actual distribution so users pick a threshold grounded in their data, not a magic number</li>
+                            <li><strong>Tag merging over discard</strong> &mdash; when chunks are near-duplicates, tags from both are merged into the survivor. Information is preserved even when text is deduplicated</li>
+                            <li><strong>Three-path ingestion for different workflows</strong> &mdash; JSON paste for power users, auto-generated prompts for LLM-assisted extraction (no API key needed), PubMed + PDF for automated bulk ingestion</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
+
+        </div>
         </div>
     </section>
 
@@ -952,30 +1146,34 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching
+    const tabs = document.querySelectorAll('.project-tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(tc => tc.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+        });
+    });
+
+    // Filter pills
     const buttons = document.querySelectorAll('.filter-pill');
-    const projects = document.querySelectorAll('.projects.featured .project');
-    const tiers = document.querySelectorAll('.tier-title');
     buttons.forEach(btn => {
         btn.addEventListener('click', function() {
             buttons.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             const filter = this.dataset.filter;
+            // Apply filter to the active tab's projects
+            const activeTab = document.querySelector('.tab-content.active');
+            const projects = activeTab.querySelectorAll('.project');
             projects.forEach(p => {
                 const tags = (p.dataset.tags || '').split(' ');
                 if (filter === 'all' || tags.includes(filter)) {
                     p.classList.remove('hidden');
                 } else {
                     p.classList.add('hidden');
-                }
-            });
-            // Show/hide the Featured tier title
-            tiers.forEach(title => {
-                const grid = title.nextElementSibling;
-                if (!grid) return;
-                if (grid.classList.contains('featured')) {
-                    const hasVisible = grid.querySelector('.project:not(.hidden)');
-                    title.style.display = hasVisible ? '' : 'none';
-                    grid.style.display = hasVisible ? '' : 'none';
                 }
             });
         });
