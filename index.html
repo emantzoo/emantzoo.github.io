@@ -117,6 +117,37 @@
         .filter-pill[data-filter="cloud"].active { background: rgba(248,81,73,0.15); border-color: var(--accent-red); color: var(--accent-red); }
         .filter-pill[data-filter="powerbi"].active { background: rgba(210,153,34,0.15); border-color: var(--accent-orange); color: var(--accent-orange); }
 
+        /* Project Thumbnails */
+        .project-thumbnail {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .project-thumbnail:hover { opacity: 0.85; }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+        }
+
         /* Project Tabs */
         .project-tabs { display: flex; gap: 0; margin-bottom: 28px; border-bottom: 2px solid var(--border); }
         .project-tab { background: transparent; border: none; color: var(--text-muted); font-size: 0.95em; font-family: inherit; font-weight: 500; padding: 10px 24px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
@@ -131,6 +162,7 @@
             .project details td:first-child { white-space: normal; }
             .filter-pills { gap: 6px; }
             .filter-pill { padding: 5px 12px; font-size: 0.78em; }
+            .project-thumbnail { max-height: 150px; }
         }
     </style>
 </head>
@@ -209,6 +241,7 @@
                         <span class="tag tag-cloud">Cloud</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/regscope.jpg" alt="RegScope infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Autonomous AI agent that decodes EU regulatory text, extracts compliance timelines, analyses ambiguities,
                     contradictions, stakeholder impacts, and cross-references, then delivers executive briefings. Three modes:
@@ -266,6 +299,7 @@
                         <span class="tag tag-ai">ML/Clustering</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/eu-fdi-explorer.jpg" alt="EU FDI Explorer infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Interactive analysis of 5 million catch records across 23 EU Member States and 12 years of STECF fisheries data (2013&ndash;2024).
                     Evaluates the Landing Obligation&rsquo;s impact on discards, detects fleet behavioural shifts using PCA and clustering,
@@ -317,6 +351,7 @@
                         <span class="tag tag-cloud">Cloud</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/datascope.jpg" alt="DataScope infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     No-code analytics platform with an autonomous AI agent that explores your data without you clicking anything.
                     The Auto-Discover module runs a full ReAct loop (Plan, Execute, Reflect, Narrate) &mdash; it generates hypotheses,
@@ -390,6 +425,7 @@
                         <span class="tag tag-r">R Package</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/excel2r.jpg" alt="excel2r infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     R package that migrates entire Excel workbooks to R in one step. Upload any multi-tab .xlsx &mdash; the package
                     extracts every formula, translates 62 Excel functions to R equivalents, resolves cross-sheet references via
@@ -457,6 +493,7 @@
                         <span class="tag tag-cloud">Cloud</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/med-vessel.jpg" alt="Med Vessel Behaviour Monitor infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Real-time behavioural risk intelligence dashboard for the Mediterranean Sea. Ingests AIS gap, encounter and
                     loitering events from the Global Fishing Watch API and scores each event using a custom formula weighing
@@ -507,6 +544,7 @@
                         <span class="tag tag-cloud">Cloud</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/iap-citrus.jpg" alt="IAP Citrus infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Production web application for the PLANT-B research project (PRIMA grant, Benaki Phytopathological Institute)
                     used by agronomists across 4 Mediterranean countries. Converts pesticide usage data into real-time environmental
@@ -562,6 +600,7 @@
                         <span class="tag tag-cloud">Cloud</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/dma-dashboard.jpg" alt="Digital Maturity Assessment infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Interactive diagnostic dashboard that takes raw survey data from Greek businesses (Likert scales, checklists, ratings
                     across 11 question blocks) and produces SWOT classifications, priority matrices, gap analyses, and implementation
@@ -613,6 +652,7 @@
                         <span class="tag tag-cloud">Cloud</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/smart-dma.jpg" alt="Smart DMA infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Replaces static questionnaires with a dynamic diagnostic engine for retail SMEs. Routes 44 questions adaptively
                     toward the highest-scoring unconfirmed pain cluster using a 7-cluster Bayesian-inspired scoring model with
@@ -668,6 +708,7 @@
                         <span class="tag tag-ai">AI/LLM</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/powerbi-dashboards.jpg" alt="Power BI Dashboards from Code infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Code-first Power BI dashboard framework that generates complete multi-page dashboards as PBIR JSON &mdash; no drag-and-drop.
                     18 visual types (cards, gauges, scatter plots, waterfalls, ribbons, maps, matrices, and more), each defined in one line of
@@ -706,6 +747,7 @@
                         <span class="tag tag-r">R Markdown</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/herbicide-analysis.jpg" alt="Herbicide Efficacy Analysis infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     End-to-end biostatistical analysis of a simulated greenhouse experiment (RCBD with repeated measures),
                     demonstrating the full workflow from experimental design through mixed models, dose-response curves,
@@ -755,6 +797,7 @@
                         <span class="tag tag-r">R Package</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/agrideshr.jpg" alt="agrideshr infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Tutorial R package with a pkgdown website covering five classical experimental designs used in agricultural
                     research (CRD, RCBD, Latin Square, Factorial, Split-Plot). Each design includes a built-in dataset, a detailed
@@ -802,6 +845,7 @@
                         <span class="tag tag-minecraft">MakeCode</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/minecraft-education.jpg" alt="Minecraft Education infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Two educational games for Minecraft Education Edition that make classification and search algorithms tangible
                     through gameplay. An AI agent sorts animals using fine-grained vs coarse classification strategies, then navigates
@@ -857,6 +901,7 @@
                         <span class="tag tag-ai">AI/LLM</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/sdc-app.jpg" alt="Statistical Disclosure Control infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Production anonymization engine that protects individual-level datasets against re-identification using four methods
                     (k-Anonymity, Local Suppression, PRAM, Noise Addition), selected automatically by a 40+ rule decision engine.
@@ -913,6 +958,7 @@
                         <span class="tag tag-cloud">Cloud</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/policy-intelligence.jpg" alt="Policy Intelligence Platform infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Policy analytics platform tracking the EU Council Recommendation on Fair Transition across 27 member states.
                     Ingests 1,000+ policy measures from MongoDB and provides 14 interactive visualisations with 11 simultaneous filter
@@ -967,6 +1013,7 @@
                         <span class="tag tag-cloud">RAG/MongoDB</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/pd-gait.jpg" alt="PD Gait Analysis Agent infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     A clinician asks a question in plain English; the agent writes Python code to analyse wearable sensor gait data,
                     executes it in a sandbox, and returns a clinically contextualised answer with full reasoning trace. Built on the
@@ -1018,6 +1065,7 @@
                         <span class="tag tag-ai">AI/Gemini</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/kbforge.jpg" alt="KBforge infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Streamlit app that turns domain literature into production-ready knowledge bases for LLM retrieval-augmented
                     generation (RAG). Ingest evidence from PDFs, PubMed, or structured JSON &mdash; every chunk is embedded, tagged
@@ -1073,6 +1121,7 @@
                         <span class="tag tag-ai">React</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/spark-athens.jpg" alt="Spark Athens infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     Multi-sided platform for Athens nightlife that connects three audiences through role-based interfaces.
                     Users discover events happening tonight, see who&rsquo;s going before they commit, and match with people
@@ -1098,6 +1147,7 @@
                         <span class="tag tag-ai">React</span>
                     </div>
                 </div>
+                <img class="project-thumbnail" src="images/athens-events-hub.jpg" alt="Athens Events Hub infographic" onclick="openLightbox(this.src)">
                 <p class="desc">
                     B2B event networking platform designed for Greek SMEs attending professional conferences, trade shows,
                     and workshops. Solves the biggest pain point of business events: walking in blind. Attendees publish
@@ -1229,6 +1279,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+</script>
+
+<div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+    <img id="lightbox-img" src="" alt="Infographic">
+</div>
+<script>
+function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+}
 </script>
 </body>
 </html>
