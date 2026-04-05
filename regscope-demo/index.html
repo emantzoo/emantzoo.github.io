@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RegScope — EU Regulatory Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;0,800;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ── Sticky Top Bar (header + tabs) ─────────────────────── -->
+  <div class="top-bar">
+    <header class="header">
+      <div class="header__inner">
+        <div>
+          <h1 class="header__title"><span class="header__title--light">REG</span><span class="header__title--gold">SCOPE</span></h1>
+          <p class="header__sub">AUTONOMOUS EU REGULATORY INTELLIGENCE</p>
+        </div>
+        <div class="header__right">
+          </div>
+      </div>
+      <div class="header__bar"><div class="header__bar-fill"></div></div>
+    </header>
+
+    <!-- ── Pipeline Tabs ───────────────────────────────────────── -->
+    <nav class="tabs">
+      <button class="tabs__btn tabs__btn--active" data-tab="analyse">ANALYSE</button>
+      <button class="tabs__btn" data-tab="compare">COMPARE</button>
+      <button class="tabs__btn" data-tab="search">SEARCH</button>
+      </nav>
+  </div>
+
+  <!-- ── Main Content Area ───────────────────────────────────── -->
+  <main class="body">
+
+    <!-- Pipeline A: Analyse -->
+    <section class="pipeline" id="pipeline-analyse">
+      <div id="analyse-input-area"></div>
+      <div id="analyse-workspace" class="workspace" style="display:none">
+        <div class="workspace__log" id="analyse-log-panel"></div>
+        <div class="workspace__results" id="analyse-results"></div>
+      </div>
+      <div id="analyse-empty" class="empty-state">
+        <div class="empty-state__label">SELECT A REGULATION TO BEGIN</div>
+        <div class="empty-state__text">
+          RegScope deploys an autonomous AI agent that decodes regulatory text,
+          extracts compliance timelines, analyses ambiguities, contradictions,
+          stakeholder impacts, and cross-references, then delivers an executive briefing.
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipeline B: Compare -->
+    <section class="pipeline" id="pipeline-compare" style="display:none">
+      <div id="compare-input-area"></div>
+      <div id="compare-workspace" class="workspace" style="display:none">
+        <div class="workspace__log" id="compare-log-panel"></div>
+        <div class="workspace__results" id="compare-results"></div>
+      </div>
+      <div id="compare-empty" class="empty-state">
+        <div class="empty-state__label">SELECT A DOCUMENT PAIR TO BEGIN</div>
+        <div class="empty-state__text">
+          RegScope compares two policy documents side by side — mapping provisions,
+          identifying transposition gaps, gold-plating, contradictions, and national
+          additions, then delivers a structured comparison briefing.
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipeline C: Search -->
+    <section class="pipeline" id="pipeline-search" style="display:none">
+      <div id="search-input-area"></div>
+      <div id="search-workspace" class="workspace" style="display:none">
+        <div class="workspace__log" id="search-log-panel"></div>
+        <div class="workspace__results" id="search-results"></div>
+      </div>
+      <div id="search-empty" class="empty-state">
+        <div class="empty-state__label">SELECT A QUESTION TO BEGIN</div>
+        <div class="empty-state__text">
+          RegScope deploys an autonomous AI agent that interprets your policy question,
+          searches the EU regulatory corpus, decodes each instrument, analyses cross-regulatory
+          interactions and gaps, and delivers a synthesised intelligence briefing.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────── -->
+  <footer class="footer">
+    <span>REGSCOPE DEMO</span>
+    <span>Built by Eirini Mantzouni</span>
+    <span class="footer__powered">Powered by Gemini API</span>
+  </footer>
+
+  <!-- ── Scripts ─────────────────────────────────────────────── -->
+  <script src="js/components.js"></script>
+  <script src="js/agentLog.js"></script>
+  <script src="js/demo-data.js"></script>
+  <script src="js/pipelines/pipeline-a.js"></script>
+  <script src="js/pipelines/compare.js"></script>
+  <script src="js/pipelines/search.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
